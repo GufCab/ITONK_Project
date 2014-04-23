@@ -48,13 +48,49 @@ By using name resolution are we able to use some more human memorable domain nam
 
 In DNS forwarding is used to access domains outside of your local network ex to access webpages on the internet. A forwarder is also able to use caching to make DNS resolution faster.
 \subsection{Iterative}
+As explained above, the DNS server resolves the IP address of a specified resource. This can be done iteratively and recursively.
+When resolving an IP address iteratively, the largest burden of work is transferred to the requester. 
+When a DNS query reaches the server, the server will check if it has the address cached/knows the address of the URL. If it does not, the server will transmit back the address of the next DNS server in the hierarchy until the root domain is reached.
+Thus, the requester must then query the next DNS server and so on until a server is reached, which knows the address of the requested url.
+
+All DNS servers \textbf{must} implement Iterative queries.
+
+[Insert figure]
+
 \subsection{Recursive}
+With recursive address resolution, the burden of work is on the DNS server. When the server is queried and it does not have the IP cached/know the IP, the server will then forward the request to the next server in the hierarchy. The query will then be answered iteratively or recursively by the next server and so on, until the correct address is found.
+The server then waits until it gets the correct address and \textit{then} returns the address to the original requester. The original requester will then only have to do \textit{one} request and does not need to know anything about the further process. 
+
+[Insert figure]
+
 \subsection{Caching}
+%Why is this important?
+%How does it help in Recursive/iterative resolution.
+Caching of DNS lookups can be done in a few different ways. Closest to the user and the fastest is local caching which can be done with a DNS server like BIND. It is a local server that saves name resolutions for that webpages you have visited and therefore is able to make the resolution a lot faster.
+
+Then there is caching on the non-local DNS servers. This is very smart for a recursive DNS address resolution because all resolutions goes through the root server and it makes it able to cache all the most used pages. In interative DNS resolutions the server is only able to cache a part of the lookup because it will never get the result of the whole lookup.
+
 \subsection{Security [DNSSEC]}
+
 \section{BIND}
+BIND (Berkeley Internet Name Domain) is the most prevalent DNS software on the internet today. The software is used to set up DNS servers and can be used to configure a local DNS forwarding server on the users own machine (as we do in our case).
+Bind will run as a service on the machine. 
+
+For this case, virtual machines running Linux are used. 
 \subsection{Downloading}
+On Linux the command
+\textbf{[Inset apt-get install bind9 in terminal here]}
+is used to download and install the bind9 package. This will create all the correct nodes and install the package. 
+Because the package is tracked in the package description of the largest Linux distributions, no additional compilation is needed.
+
 \subsection{Configuration}
-\subsection{Basic Use}
+The purpose of BIND, in this case, is to set up and use a DNS forwarding server on the local machine. 
+Therefore, it is necessary to edit some of the configuration files for DNS resolution.
+
+\textbf{resolv.conf}
+This file is used by the DNS resolver libraries on the PC. This file can be set up, to point towards the appropriate DNS resolver. The Bind service is 
+
+BIND implements DNS caching as default, so no additional configuration is needed there. 
 
 %This chapter should contain an in-depth description of the technology,
 %i.e. DNS, DDS, or RMI. You should at least address

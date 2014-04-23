@@ -28,7 +28,28 @@ The most popular version of the BIND DNS server, is version nine, also calle BIN
 Using namebench etc. What NS should we use to get great results.
 
 \section{Tests}
-RTT before and after/with without caching.
+After setting up BIND to act as a forwarding DNS server, we must test to see if it actually worked!
+
+To test this, we will use the \textit{dig} tool, to check that the forwarding works, and that caching has a noticeable effect on the DNS look up times. 
+\subsection{dig tool}
+To test DNS look up times, the Domain Information Groper is invoked in the command line.
+
+This will give us the query time and the forwarding server, used in the query where
+
+\textbf{Query time}
+Denotes the time (in ms) it took to resolve the name into an IP address.
+This query time should go down considerably on repeated attempts as a result of caching DNS resolutions.
+
+and
+
+\textbf{SERVER}
+Denotes the DNS forwarding server used. This should be the address of the BIND server (127.0.0.1, as this server is checking on the localhost interface)
+
+
+\subsection{Testing}
+\textbf{Forwarding}
+
+\textbf{Caching}
 
 \section{Results}
 
