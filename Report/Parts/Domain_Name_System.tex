@@ -45,8 +45,21 @@ Tells us the address of the first DNS server, we will query for an address of a 
 \section{Name Resolution and forwarding}
 %Hvad er formålet med name resolution? Hvad gør det? Hvad får vi ud af det?
 \subsection{Iterative}
+As explained above, the DNS server resolves the IP address of a specified resource. This can be done iteratively and recursively.
+When resolving an IP address iteratively, the largest burden of work is transferred to the requester. 
+When a DNS query reaches the server, the server will check if it has the address cached/knows the address of the URL. If it does not, the server will transmit back the address of the next DNS server in the hierarchy until the root domain is reached.
+Thus, the requester must then query the next DNS server and so on until a server is reached, which knows the address of the requested url.
+
+All DNS servers \textbf{must} implement Iterative queries.
+
 \subsection{Recursive}
+With recursive address resolution, the burden of work is on the DNS server. When the server is queried and it does not have the IP cached/know the IP, the server will then forward the request to the next server in the hierarchy. The query will then be answered iteratively or recursively by the next server and so on, until the correct address is found.
+The server then waits until it gets the correct address and \textit{then} returns the address to the original requester. The original requester will then only have to do \textit{one} request and does not need to know anything about the further process. 
+
 \subsection{Caching}
+%Why is this important?
+%How does it help in Recursive/iterative resolution.
+
 \subsection{Security [DNSSEC]}
 \section{BIND}
 \subsection{Downloading}
