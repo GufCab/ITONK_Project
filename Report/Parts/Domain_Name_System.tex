@@ -61,6 +61,9 @@ The server then waits until it gets the correct address and \textit{then} return
 \subsection{Caching}
 %Why is this important?
 %How does it help in Recursive/iterative resolution.
+Caching of DNS lookups can be done in a few different ways. Closest to the user and the fastest is local caching which can be done with a DNS server like BIND. It is a local server that saves name resolutions for that webpages you have visited and therefore is able to make the resolution a lot faster.
+
+Then there is caching on the non-local DNS servers. This is very smart for a recursive DNS address resolution because all resolutions goes through the root server and it makes it able to cache all the most used pages. In interative DNS resolutions the server is only able to cache a part of the lookup because it will never get the result of the whole lookup.
 
 \subsection{Security [DNSSEC]}
 \section{BIND}
