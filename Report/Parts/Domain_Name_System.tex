@@ -10,20 +10,21 @@ This section will not focus on the chosen real-life case. This is a general desc
 To access any resource on the internet (or LAN), be it a website or a specific device, a location is needed. When dealing with internet-related technologies, this location is specified by an \textit{IP address}. 
 
 On any given network, an IP address should be unique to a specific device/server. However, local network routers generally have a private block of IP addresses for devices on that specific sub-net and a separate IP for the outside world (access to sub-net devices are forwarded to the specific devices by the router).
+
 The router then acts as the \textit{gateway} to the outside world and should be accessible by an IP within the range of the sub-net.
+To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (windows) can be used 
 
-To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (windows) can be used
-
-\begin{figure}[h!]
-	\centering
+\begin{center}
 	\includegraphics[width=\textwidth]{ifconfig.png}
-	\caption{ifconfig from Linux machine}
-\end{figure}
-
+	\captionof{figure}{ifconfig command from Linux machine}
+\end{center}
 
 If the tool \textit{nm-tool} is run (on a Linux machine) the output will look like this:
 
-[Insert picture of nm-tool]
+\begin{center}
+	\includegraphics[trim = 0px 100px 400px 47px, clip, width=\textwidth]{nm-tool.png}
+	\captionof{figure}{nm-tool command from Linux machine}
+\end{center}
 
 Where 
 
@@ -47,17 +48,7 @@ By using name resolution are we able to use some more human memorable domain nam
 
 In DNS forwarding is used to access domains outside of your local network ex to access webpages on the internet. A forwarder is also able to use caching to make DNS resolution faster.
 \subsection{Iterative}
-As explained above, the DNS server resolves the IP address of a specified resource. This can be done iteratively and recursively.
-When resolving an IP address iteratively, the largest burden of work is transferred to the requester. 
-When a DNS query reaches the server, the server will check if it has the address cached/knows the address of the URL. If it does not, the server will transmit back the address of the next DNS server in the hierarchy until the root domain is reached.
-Thus, the requester must then query the next DNS server and so on until a server is reached, which knows the address of the requested url.
-
-All DNS servers \textbf{must} implement Iterative queries.
-
 \subsection{Recursive}
-With recursive address resolution, the burden of work is on the DNS server. When the server is queried and it does not have the IP cached/know the IP, the server will then forward the request to the next server in the hierarchy. The query will then be answered iteratively or recursively by the next server and so on, until the correct address is found.
-The server then waits until it gets the correct address and \textit{then} returns the address to the original requester. The original requester will then only have to do \textit{one} request and does not need to know anything about the further process. 
-
 \subsection{Caching}
 %Why is this important?
 %How does it help in Recursive/iterative resolution.
