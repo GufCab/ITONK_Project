@@ -33,16 +33,15 @@ Where
 Denotes the machines' IP on the local sub-net. Other devices on the sub-net will use this IP on to communicate with the device.
 
 \textbf{Prefix} 
-Denotes the 
+Denotes the subnet - mask of the network. This shows how many individual addresses are available on the sub-net. An IP address is 32 bits total and in the \textit{xx.xx.xx.xx/yy} format, \textit{yy} denotes the amount of bits reserved for the address of the \textit{subnet} and not the address of the individual devices on the net. Thus, a subnet with fewer bits reserved for the subnet address (say, 16 bits) can contain more individual addresses. This can be utilized in a larger sub-net, containing smaller sub-nets with the individual devices and thus fanning out to the individual addresses. 
 
-%\textbf{IP versions}
-\subsection{Checking IP and related}
-How to check IP (Linux) ifconfig
+\textbf{Gateway}
+As explained above, most devices are connected to a sub-net, where their address only has to be individual on the sub-net. The \textit{gateway} then, is the point of access to the outside world. This could be the main router, of the subnet. All access to the internet goes through this device and the Gateway field, obtained when running nm-tools, describes the address of this device. 
 
-nm-tool
+\textbf{DNS}
+Tells us the address of the first DNS server, we will query for an address of a resource on the internet. When a user types the URL of a website, e.g. www.google.com, this IP address is queried for the actual address of the URL, this is explained in detail further into this report.
 
-%To understand DNS, you must understand IP addresses! [Altså Excercise 1!]
-%Helt overordnet, hvad er det?
+
 \section{Name Resolution and forwarding}
 %Hvad er formålet med name resolution? Hvad gør det? Hvad får vi ud af det?
 \subsection{Iterative}
