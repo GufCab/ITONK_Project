@@ -1,6 +1,6 @@
 \chapter{[Case Name]}
 \section{Description}
-This is a brief description of the case, chosen to illustrate the possibilities and challenges of setting up ypur own DNS server.
+This is a brief description of the case, chosen to illustrate the possibilities and challenges of setting up your own DNS server.
 
 \textbf{The case is}
 a kindergarten in Hellerup, Denmark has chosen to buy every third child an iPad Air 128 GB Wifi model. The rest of the kids get an Android Nexus 10, 32 GB Wifi model. Everything is going great until Christian, a 3 year old, gets fed up with absurdly long loading times. Christian checks out Google namebench and notices that all his DNS lookups take more than 100 ms!
@@ -12,3 +12,6 @@ Christian takes Uffe, the kindergarten teacher, by the hand and informs him of t
 
 \section{Requirements}
 To create a suitable setup, Uffe will need a Linux server running some sort of DNS server configured to forward requests to the fastest public DNS servers.
+
+It is a requirement of the system, that this server should be able to cache DNS requests and forward DNS requests to an appropriate name-server.
+This must reduce the DNS look-up times!
