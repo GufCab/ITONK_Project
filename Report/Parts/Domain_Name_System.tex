@@ -10,21 +10,20 @@ This section will not focus on the chosen real-life case. This is a general desc
 To access any resource on the internet (or LAN), be it a website or a specific device, a location is needed. When dealing with internet-related technologies, this location is specified by an \textit{IP address}. 
 
 On any given network, an IP address should be unique to a specific device/server. However, local network routers generally have a private block of IP addresses for devices on that specific sub-net and a separate IP for the outside world (access to sub-net devices are forwarded to the specific devices by the router).
-
 The router then acts as the \textit{gateway} to the outside world and should be accessible by an IP within the range of the sub-net.
-To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (windows) can be used 
 
-\begin{center}
+To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (windows) can be used
+
+\begin{figure}[h!]
+	\centering
 	\includegraphics[width=\textwidth]{ifconfig.png}
-	\captionof{figure}{ifconfig command from Linux machine}
-\end{center}
+	\caption{ifconfig from Linux machine}
+\end{figure}
+
 
 If the tool \textit{nm-tool} is run (on a Linux machine) the output will look like this:
 
-\begin{center}
-	\includegraphics[trim = 0px 100px 400px 47px, clip, width=\textwidth]{nm-tool.png}
-	\captionof{figure}{nm-tool command from Linux machine}
-\end{center}
+[Insert picture of nm-tool]
 
 Where 
 
@@ -84,6 +83,11 @@ is used to download and install the bind9 package. This will create all the corr
 Because the package is tracked in the package description of the largest Linux distributions, no additional compilation is needed.
 
 \subsection{Configuration}
+
+\subsection{Basic Use}
+The most basic use of BIND is to set up DNS caching, so that the first time you visit a domain BIND will cache the result and use that the next time you visit that domain.
+BIND does also have way more advanced features and is therefore the most widely used DNS server in both large and small scale.
+
 The purpose of BIND, in this case, is to set up and use a DNS forwarding server on the local machine. 
 Therefore, it is necessary to edit some of the configuration files for DNS resolution.
 
@@ -91,6 +95,7 @@ Therefore, it is necessary to edit some of the configuration files for DNS resol
 This file is used by the DNS resolver libraries on the PC. This file can be set up, to point towards the appropriate DNS resolver. The Bind service is 
 
 BIND implements DNS caching as default, so no additional configuration is needed there. 
+
 
 %This chapter should contain an in-depth description of the technology,
 %i.e. DNS, DDS, or RMI. You should at least address

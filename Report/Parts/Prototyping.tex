@@ -25,11 +25,11 @@ The bind Domain Nameserver software is the most commonly used. It is also the so
 The server provides domain resolution by iterative or recursive resolution.
 
 \section{Setup of BIND server}
-
+First we set up BIND as a caching nameserver. We added localhost, 127.0.0.1, as the first nameserver in "/etc/resolvconf/resolv.conf.d/head". Then we set set up a DNS forwarder to take care of all the non cached results by adding its IP address to "/etc/bind/named.conf.options". After these steps was the only thing left to do to restart the bind server and the then we had blazing fast DNS lookups.
 
 
 \subsection{Choose DNS server to forward to}
-Using namebench etc. What NS should we use to get great results.
+To find the most optimal DNS server to forward to, we chose to use Googles Namebench to decide for us. It runs a full fledged test suite that tests all available DNS servers for which has the fastest response times.  
 
 \section{Tests}
 After setting up BIND to act as a forwarding DNS server, we must test to see if it actually worked!
@@ -49,13 +49,46 @@ and
 \textbf{SERVER}
 Denotes the DNS forwarding server used. This should be the address of the BIND server (127.0.0.1, as this server is checking on the localhost interface)
 
-
 \subsection{Testing}
 \textbf{Forwarding}
 
+In this test, dig is invoked to resolve the website www.svejstrup.org. 
+The picture is part of the output of the dig tool and shows the address used as DNS server.
+
+\begin{center}
+	\includegraphics[scale=1.0]{ForwardingSmall.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
 \textbf{Caching}
 
+In this test, dig is invoked to resolve the website www.svejstrup.org.
+The picture is the full output of dig and shows the query time \textit{the first time} dig is invoked to do the resolving. This should give an idea of the resolving time \textit{before} the DNS is cached.
+
+\begin{center}
+	\includegraphics[scale=1.0]{DigFullBeforeCaching.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
+After the initial run of dig, the DNS resolve should now be cached in the BIND server. To test this, we run dig again on the same website shortly after the first run:
+
+\begin{center}
+	\includegraphics[scale=1.0]{DigFull.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
+\textbf{IP address}
+of the server is also seen in the dig printout (86.52.89.150).
+
 \section{Results}
+\subsection{Forwarding}
+The DNS server used for DNS resolution is now 127.0.0.1,the address of localhost which BIND listens on.
+
+\subsection{Caching}
+We see that, before caching the query time was \textit{120 ms} and after the caching it was all the way down to \textit{9 ms}.
+
+So that is a decrease of 111 ms, a sizeable decrease.
+
 
 %This chapter should contain an in-depth description of prototyping
 %with the technology, i.e. DNS, DDS, or RMI. That is, you analyze,
