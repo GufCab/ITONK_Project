@@ -54,9 +54,13 @@ Thus, the requester must then query the next DNS server and so on until a server
 
 All DNS servers \textbf{must} implement Iterative queries.
 
+[Insert figure]
+
 \subsection{Recursive}
 With recursive address resolution, the burden of work is on the DNS server. When the server is queried and it does not have the IP cached/know the IP, the server will then forward the request to the next server in the hierarchy. The query will then be answered iteratively or recursively by the next server and so on, until the correct address is found.
 The server then waits until it gets the correct address and \textit{then} returns the address to the original requester. The original requester will then only have to do \textit{one} request and does not need to know anything about the further process. 
+
+[Insert figure]
 
 \subsection{Caching}
 %Why is this important?
@@ -66,12 +70,32 @@ Caching of DNS lookups can be done in a few different ways. Closest to the user 
 Then there is caching on the non-local DNS servers. This is very smart for a recursive DNS address resolution because all resolutions goes through the root server and it makes it able to cache all the most used pages. In interative DNS resolutions the server is only able to cache a part of the lookup because it will never get the result of the whole lookup.
 
 \subsection{Security [DNSSEC]}
+
 \section{BIND}
+BIND (Berkeley Internet Name Domain) is the most prevalent DNS software on the internet today. The software is used to set up DNS servers and can be used to configure a local DNS forwarding server on the users own machine (as we do in our case).
+Bind will run as a service on the machine. 
+
+For this case, virtual machines running Linux are used. 
 \subsection{Downloading}
+On Linux the command
+\textbf{[Inset apt-get install bind9 in terminal here]}
+is used to download and install the bind9 package. This will create all the correct nodes and install the package. 
+Because the package is tracked in the package description of the largest Linux distributions, no additional compilation is needed.
+
 \subsection{Configuration}
+
 \subsection{Basic Use}
 The most basic use of BIND is to set up DNS caching, so that the first time you visit a domain BIND will cache the result and use that the next time you visit that domain.
 BIND does also have way more advanced features and is therefore the most widely used DNS server in both large and small scale.
+
+The purpose of BIND, in this case, is to set up and use a DNS forwarding server on the local machine. 
+Therefore, it is necessary to edit some of the configuration files for DNS resolution.
+
+\textbf{resolv.conf}
+This file is used by the DNS resolver libraries on the PC. This file can be set up, to point towards the appropriate DNS resolver. The Bind service is 
+
+BIND implements DNS caching as default, so no additional configuration is needed there. 
+
 
 %This chapter should contain an in-depth description of the technology,
 %i.e. DNS, DDS, or RMI. You should at least address
