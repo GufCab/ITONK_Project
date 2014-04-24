@@ -45,15 +45,50 @@ This query time should go down considerably on repeated attempts as a result of 
 and
 
 \textbf{SERVER}
-Denotes the DNS forwarding server used. This should be the address of the BIND server (127.0.0.1, as this server is checking on the localhost interface)
+Denotes the DNS forwarding server used. This should be the address of the BIND server (127.0.0.1, as the BIND server is checking on the localhost interface).
 
 
 \subsection{Testing}
 \textbf{Forwarding}
 
+In this test, dig is invoked to resolve the website www.svejstrup.org. 
+The picture is part of the output of the dig tool and shows the address used as DNS server.
+
+\begin{center}
+	\includegraphics[scale=1.0]{ForwardingSmall.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
 \textbf{Caching}
 
+In this test, dig is invoked to resolve the website www.svejstrup.org.
+The picture is the full output of dig and shows the query time \textit{the first time} dig is invoked to do the resolving. This should give an idea of the resolving time \textit{before} the DNS is cached.
+
+\begin{center}
+	\includegraphics[scale=1.0]{DigFullBeforeCaching.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
+After the initial run of dig, the DNS resolve should now be cached in the BIND server. To test this, we run dig again on the same website shortly after the first run:
+
+\begin{center}
+	\includegraphics[scale=1.0]{DigFull.png}
+%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+\end{center}
+
+\textbf{IP address}
+of the server is also seen in the dig printout (86.52.89.150).
+
 \section{Results}
+\subsection{Forwarding}
+The DNS server used for DNS resolution is now 127.0.0.1,the address of localhost which BIND listens on.
+
+\subsection{Caching}
+We see that, before caching the query time was \textit{120 ms} and after the caching it was all the way down to \textit{9 ms}.
+
+So that is a decrease of 111 ms, a sizeable decrease.
+
+
 
 %This chapter should contain an in-depth description of prototyping
 %with the technology, i.e. DNS, DDS, or RMI. That is, you analyze,
