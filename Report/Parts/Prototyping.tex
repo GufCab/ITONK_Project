@@ -13,12 +13,14 @@ Most modern mid-end routers has the ability to do some basic DNS forwarding. In 
 From here on, our local nameserver will handle any DNS lookup on the network, allowing us to filter, cache and forward all trafic, as needed.
 
 \section{BIND DNS server}
-The most popular version of the BIND DNS server, is version nine, also calle BIND9. This can be downloaded from the debian public repositories using aptitude. Install BIND9 using the following command:
+The most popular version of the BIND DNS server, is version nine, also called BIND9. This can be downloaded from the debian public repositories using aptitude. Install BIND9 using the following command:
 
 \begin{center}
 	\includegraphics[scale=1.0]{apt-get_bind9.png}
 %	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
 \end{center}
+
+The bind Domain Nameserver software is the most commonly used. It is also the software of choice for most of the root nameservers.
 
 \section{Setup of BIND server}
 
