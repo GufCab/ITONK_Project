@@ -2,7 +2,7 @@
 \section{Overview}
 This section will describe the technological fundamentals of DNS, as well as related technologies like IP addressing. The technologies will be described along with example software used to display different parts of the theory.
 
-The section will also contain a description of the BIND DNS software, along with installation and user guide. 
+The section will also contain a description of the BIND DNS software.
 
 This section will not focus on the chosen real-life case. This is a general description of the technology.
 \section{IP Addressing}
@@ -22,7 +22,7 @@ To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (wind
 If the tool \textit{nm-tool} is run (on a Linux machine) the output will look like this:
 
 \begin{center}
-	\includegraphics[trim = 0px 100px 400px 47px, clip, width=\textwidth]{nm-tool.png}
+	\includegraphics[trim = 0px 100px 400px 47px, clip, scale=0.60]{nm-tool.png}
 	\captionof{figure}{nm-tool command from Linux machine}
 \end{center}
 
@@ -53,13 +53,19 @@ Thus, the requester must then query the next DNS server and so on until a server
 
 All DNS servers \textbf{must} implement Iterative queries.
 
-[Insert figure]
+\begin{center}
+	\includegraphics[width=\textwidth]{DNS_Iterative.png}
+	\captionof{figure}{Iterative DNS lookup}
+\end{center}
 
 \subsection{Recursive}
 With recursive address resolution, the burden of work is on the DNS server. When the server is queried and it does not have the IP cached/know the IP, the server will then forward the request to the next server in the hierarchy. The query will then be answered iteratively or recursively by the next server and so on, until the correct address is found.
 The server then waits until it gets the correct address and \textit{then} returns the address to the original requester. The original requester will then only have to do \textit{one} request and does not need to know anything about the further process. 
 
-[Insert figure]
+\begin{center}
+	\includegraphics[width=\textwidth]{DNS_Recursive.png}
+	\captionof{figure}{Recursive DNS lookup}
+\end{center}
 
 \subsection{Caching}
 %Why is this important?
