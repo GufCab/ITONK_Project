@@ -17,7 +17,7 @@ The most popular version of the BIND DNS server, is version nine, also called BI
 
 \begin{center}
 	\includegraphics[scale=1.0]{apt-get_bind9.png}
-%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+%	\captionof{figure}{}
 \end{center}
 
 The bind Domain Nameserver software is the most commonly used. It is also the software of choice for most of the root nameservers.
@@ -32,7 +32,8 @@ First we set up BIND as a caching nameserver. We added localhost, 127.0.0.1, as 
 To find the most optimal DNS server to forward to, we chose to use Googles Namebench to decide for us. It runs a full fledged test suite that tests all available DNS servers for which has the fastest response times.  
 
 \begin{center}
-	\includegraphics[scale=0.55]{Namebench.png}
+%	\includegraphics[scale=0.55]{Namebench.png}
+	\includegraphics[width=\textwidth]{Namebench.png}
 	\captionof{figure}{Google Namebench result}
 \end{center}
 
@@ -62,7 +63,7 @@ The picture is part of the output of the dig tool and shows the address used as 
 
 \begin{center}
 	\includegraphics[scale=1.0]{ForwardingSmall.png}
-%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+	\captionof{figure}{Dig console output showing forwarding}
 \end{center}
 
 \textbf{Caching}
@@ -71,15 +72,15 @@ In this test, dig is invoked to resolve the website www.svejstrup.org.
 The picture is the full output of dig and shows the query time \textit{the first time} dig is invoked to do the resolving. This should give an idea of the resolving time \textit{before} the DNS is cached.
 
 \begin{center}
-	\includegraphics[scale=1.0]{DigFullBeforeCaching.png}
-%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+	\includegraphics[width=\textwidth]{DigFullBeforeCaching.png}
+	\captionof{figure}{Dig console output before caching}
 \end{center}
 
 After the initial run of dig, the DNS resolve should now be cached in the BIND server. To test this, we run dig again on the same website shortly after the first run:
 
 \begin{center}
-	\includegraphics[scale=1.0]{DigFull.png}
-%	\captionof{figure}{DNS Nameserver forwarding on NETGEAR router}
+	\includegraphics[width=\textwidth]{DigFull.png}
+	\captionof{figure}{Dig console ouput}
 \end{center}
 
 \textbf{IP address}
