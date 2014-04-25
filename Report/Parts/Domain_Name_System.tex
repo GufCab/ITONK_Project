@@ -14,18 +14,17 @@ The router then acts as the \textit{gateway} to the outside world and should be 
 
 To check the IP address of a device, the tool ifconfig (Linux) or ipconfig (windows) can be used
 
-\begin{figure}[h!]
-	\centering
+\begin{center}
 	\includegraphics[width=\textwidth]{ifconfig.png}
-	\caption{ifconfig from Linux machine}
-\end{figure}
-
+	\captionof{figure}{nm-tool command from Linux machine}
+\end{center}
 
 If the tool \textit{nm-tool} is run (on a Linux machine) the output will look like this:
 
-[Insert picture of nm-tool]
-
-Where 
+\begin{center}
+	\includegraphics[trim = 0px 100px 400px 47px, clip, width=\textwidth]{nm-tool.png}
+	\captionof{figure}{nm-tool command from Linux machine}
+\end{center}
 
 \textbf{Address} 
 Denotes the machines' IP on the local sub-net. Other devices on the sub-net will use this IP on to communicate with the device.
@@ -77,13 +76,7 @@ BIND (Berkeley Internet Name Domain) is the most prevalent DNS software on the i
 Bind will run as a service on the machine. 
 
 For this case, virtual machines running Linux are used. 
-\subsection{Downloading}
-On Linux the command
-\textbf{[Inset apt-get install bind9 in terminal here]}
-is used to download and install the bind9 package. This will create all the correct nodes and install the package. 
-Because the package is tracked in the package description of the largest Linux distributions, no additional compilation is needed.
 
-\subsection{Configuration}
 
 \subsection{Basic Use}
 The most basic use of BIND is to set up DNS caching, so that the first time you visit a domain BIND will cache the result and use that the next time you visit that domain.
