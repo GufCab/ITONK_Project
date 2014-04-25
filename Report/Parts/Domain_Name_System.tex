@@ -70,6 +70,7 @@ Caching of DNS lookups can be done in a few different ways. Closest to the user 
 Then there is caching on the non-local DNS servers. This is very smart for a recursive DNS address resolution because all resolutions goes through the root server and it makes it able to cache all the most used pages. In interative DNS resolutions the server is only able to cache a part of the lookup because it will never get the result of the whole lookup.
 
 \subsection{Security [DNSSEC]}
+DNSSEC (Domain Name System Security Extensions) is a suite of specifications that aims to secure information provided by DNS. One of the important security enhancements of DNSSEC is that it adds a new layer of security to DNS that protects against DNS hijacking and thereby ensures that you reach the server that you indented. This security is implemented by signing the data and checking that signing upon arrival.
 
 \section{BIND}
 BIND (Berkeley Internet Name Domain) is the most prevalent DNS software on the internet today. The software is used to set up DNS servers and can be used to configure a local DNS forwarding server on the users own machine (as we do in our case).
