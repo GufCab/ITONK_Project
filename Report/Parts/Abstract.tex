@@ -1,5 +1,13 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract} 
+A DNS server is the fundamental "phonebook" of the internet, enabling the lookup of human-readable URL's to actual IP addresses of resources on the internet. For this to work, known servers can be queried for information about the address of a resource. However, some servers are better than others for speed/location. Other factors like DNS caching, also play a role in choosing an optimal DNS server.
+
+In this report, Google namebench is used to find the optimal DNS resolver server for the individual PC's. A BIND server is set up on local machines, to act as the initial DNS forwarder for resolving DNS queries. 
+The local BIND server is then setup with caching and to forward queries to the optimal DNS server. 
+
+All this results in an optimized DNS queries and the results are positive, that especially caching gives a noticeable speedup of subsequent DNS queries. 
+
+A final conclusion on the usefulness and problems of setting up a BIND server is included in the final part of the report.
 
 \setcounter{tocdepth}{1}
 \tableofcontents
