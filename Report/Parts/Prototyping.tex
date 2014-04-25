@@ -31,6 +31,11 @@ First we set up BIND as a caching nameserver. We added localhost, 127.0.0.1, as 
 \subsection{Choose DNS server to forward to}
 To find the most optimal DNS server to forward to, we chose to use Googles Namebench to decide for us. It runs a full fledged test suite that tests all available DNS servers for which has the fastest response times.  
 
+\begin{center}
+	\includegraphics[scale=0.55]{Namebench.png}
+	\captionof{figure}{Google Namebench result}
+\end{center}
+
 \section{Tests}
 After setting up BIND to act as a forwarding DNS server, we must test to see if it actually worked!
 
