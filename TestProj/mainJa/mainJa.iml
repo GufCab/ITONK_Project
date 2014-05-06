@@ -7,8 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="nddsjava" level="project" />
-    <orderEntry type="library" name="rticonnextmsgd" level="project" />
+    <orderEntry type="library" name="class" level="project" />
   </component>
 </module>
 

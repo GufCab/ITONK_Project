@@ -1,16 +1,6 @@
-import com.rti.dds.publication.DataWriter;
-
-/**
- * Created by guf on 5/5/14.
- */
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
 import com.rti.dds.infrastructure.InstanceHandle_t;
-import com.rti.dds.infrastructure.RETCODE_ERROR;
 import com.rti.dds.infrastructure.StatusKind;
 import com.rti.dds.publication.Publisher;
 import com.rti.dds.topic.Topic;
@@ -18,7 +8,11 @@ import com.rti.dds.topic.TopicQos;
 import com.rti.dds.type.builtin.StringDataWriter;
 import com.rti.dds.type.builtin.StringTypeSupport;
 
-public class GossipPublisher implements OfficePublisher {
+/**
+ * Created by guf on 5/5/14.
+ */
+
+public class GossipPublisher {
     //private final String _topic_name = "Gossip";
     private final String _topic_name = "Hello, World!";
     private DomainParticipant _domain;
@@ -38,8 +32,6 @@ public class GossipPublisher implements OfficePublisher {
             System.err.println("Unable to create domain participant");
             return;
         }
-
-
 
         // Create the topic "Hello World" for the String type
         _topic = _domain.create_topic(
