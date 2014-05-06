@@ -1,9 +1,10 @@
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
-import com.rti.dds.infrastructure.RETCODE_ERROR;
-import com.rti.dds.infrastructure.RETCODE_NO_DATA;
-import com.rti.dds.infrastructure.StatusKind;
+import com.rti.dds.infrastructure.*;
+import com.rti.dds.publication.DataWriterQos;
+import com.rti.dds.publication.Publisher;
 import com.rti.dds.subscription.DataReader;
+import com.rti.dds.subscription.DataReaderQos;
 import com.rti.dds.subscription.SampleInfo;
 import com.rti.dds.subscription.Subscriber;
 import com.rti.dds.topic.Topic;
@@ -24,8 +25,21 @@ public class main {
 
     public static final void main(String[] args) {
 
-        OfficeSubscriber GossipSubscriber = new OfficeSubscriber(null, null, "Gossip");
-        OfficeSubscriber SportsSubscriber = new OfficeSubscriber(null, null, "Sport");
+        DataReaderQos GossipQoS = Subscriber.DATAREADER_QOS_DEFAULT;
+
+        GossipQoS.durability.kind = DurabilityQosPolicyKind.TRANSIENT_DURABILITY_QOS;
+
+
+        OfficeSubscriber GossipSubscriber = new OfficeSubscriber(
+                DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
+                DomainParticipant.TOPIC_QOS_DEFAULT,
+                GossipQoS,
+                "Gossip");
+        OfficeSubscriber SportsSubscriber = new OfficeSubscriber(
+                DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
+                DomainParticipant.TOPIC_QOS_DEFAULT,
+                Subscriber.DATAREADER_QOS_DEFAULT,
+                "Sport");
 
         System.out.println("Ready to read data.");
         System.out.println("Press CTRL+C to terminate.");
