@@ -1,0 +1,35 @@
+
+\documentclass[a4paper,10pt]{report}
+
+%Include the main stylesheet
+\usepackage{./Styles/MainStyle}
+
+% Put pictures and images here
+\graphicspath{{Pictures/}}
+
+%Main Report:
+%----------------------------------------------------------
+\begin{document}
+
+\include{./Parts/Titlepage}
+\include{./Parts/Abstract}
+\include{./Parts/Introduction}
+
+\include{./Parts/Data_Distribution_Service}
+
+\include{./Parts/Case}
+\include{./Parts/Prototyping}
+
+\include{./Parts/Conclusion}
+
+\begin{thebibliography}{9}
+	\addcontentsline{toc}{chapter}{Bibliography}
+
+	\bibitem{Tanenbaum}
+	A. S. Tanenbaum, M. Van Steen, \emph{Distributed System - Principles and Paradigms, Second Edition}, Pearson, Upper Saddle River, NJ, 2007.
+
+	\bibitem{Chandramouli} R. Chandramouli, S. Rose, \emph{Challenges in Securing the Domain Name System},  US National Institute of Standards and Technology
+	
+\end{thebibliography}
+
+\end{document}
