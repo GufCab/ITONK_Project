@@ -1,15 +1,8 @@
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
 import com.rti.dds.infrastructure.*;
-import com.rti.dds.publication.DataWriterQos;
-import com.rti.dds.publication.Publisher;
-import com.rti.dds.subscription.DataReader;
 import com.rti.dds.subscription.DataReaderQos;
-import com.rti.dds.subscription.SampleInfo;
 import com.rti.dds.subscription.Subscriber;
-import com.rti.dds.topic.Topic;
-import com.rti.dds.type.builtin.StringDataReader;
-import com.rti.dds.type.builtin.StringTypeSupport;
 
 /**
  * Created by chj on 5/6/14.
@@ -50,6 +43,12 @@ public class main {
                 GossipQoS,
                 "Gossip");
         OfficeSubscriber SportsSubscriber = new OfficeSubscriber(
+                DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
+                DomainParticipant.TOPIC_QOS_DEFAULT,
+                Subscriber.DATAREADER_QOS_DEFAULT,
+                "Sport");
+
+        OfficeSubscriber SportsSubscriber1 = new OfficeSubscriber(
                 DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
                 DomainParticipant.TOPIC_QOS_DEFAULT,
                 Subscriber.DATAREADER_QOS_DEFAULT,

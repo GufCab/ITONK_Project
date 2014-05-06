@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 
 public class mainClass {
         private final static String GOSSIP_TOPIC = "Gossip";
+        private final static String SPORT_TOPIC = "Sport";
 
         public static final void main(String[] args) {
 
@@ -32,32 +33,24 @@ public class mainClass {
             dataWriterQos.ownership.kind = OwnershipQosPolicyKind.SHARED_OWNERSHIP_QOS;
             dataWriterQos.liveliness.kind = LivelinessQosPolicyKind.AUTOMATIC_LIVELINESS_QOS;
             dataWriterQos.liveliness.lease_duration.add(new Duration_t(Duration_t.DURATION_INFINITE_SEC, Duration_t.DURATION_INFINITY_NSEC));
-            
-
-            //dataWriterQos.batch.enable = true;
-            //dataWriterQos.batch.max_flush_delay =
 
             OfficePublisher gossipPub = new OfficePublisher(GOSSIP_TOPIC, DomainParticipant.TOPIC_QOS_DEFAULT, DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT, dataWriterQos);
+            OfficePublisher sportPub = new OfficePublisher(SPORT_TOPIC, DomainParticipant.TOPIC_QOS_DEFAULT, DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT, dataWriterQos);
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
-                System.out.print("Please type a message> ");
                 try {
+                    System.out.print("Please type gossip a message> ");
                     String toWrite = reader.readLine();
                     gossipPub.PublishMessage(toWrite);
+
+                    System.out.print("Please type sport a message> ");
+                    toWrite = reader.readLine();
+                    sportPub.PublishMessage(toWrite);
                 } catch (IOException e)  {
                     System.out.println("Something went.. wrong..?");
                 }
-
-                /*try{
-                    Thread.sleep(1000, 10);
-                }catch (Exception e)
-                {
-                    System.out.println("Something went.. wrong..?");
-                    System.out.println(e.getMessage());
-                }*/
             }
-
         }
 
     }

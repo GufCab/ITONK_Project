@@ -87,5 +87,10 @@ public class OfficePublisher {
         //DomainParticipantFactory.get_instance().delete_participant(_domainParticipant);
     }
 
+    public void onDestroy() {
+        _domainParticipant.delete_contained_entities();
+        DomainParticipantFactory.get_instance().delete_participant(_domainParticipant);
+    }
+
 
 }
