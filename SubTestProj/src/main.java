@@ -28,6 +28,12 @@ public class main {
         DataReaderQos GossipQoS = Subscriber.DATAREADER_QOS_DEFAULT;
 
         GossipQoS.durability.kind = DurabilityQosPolicyKind.TRANSIENT_DURABILITY_QOS;
+        GossipQoS.durability.direct_communication = true;
+
+        GossipQoS.history.kind = HistoryQosPolicyKind.KEEP_LAST_HISTORY_QOS;
+        GossipQoS.history.depth = 100;
+
+        GossipQoS.reliability.kind = ReliabilityQosPolicyKind.RELIABLE_RELIABILITY_QOS;
 
 
         OfficeSubscriber GossipSubscriber = new OfficeSubscriber(
