@@ -1,12 +1,18 @@
+
 \chapter{A Office communication ticker system}
+
 \section{Description}
-This is a brief description of the case, chosen to illustrate the possibilities and challenges of setting up your own DNS server.
+This is a brief description of the case, chosen to illustrate the possibilities and challenges of setting up your own Data Distribution Service.
 
 \textbf{The case is}
+set in an office environment on a papar or other news media. In this case you a stream of news running into the company. Every employee is responsible for different topics.
+The news stream is less useful to each journalist if they'll have to go through all subjects in the stream, reading about every topic, since the employees have separate areas of expertise. 
 
+Allowing each journalist to subscribe to individual topics would greatly increase efficiency at the news media company. Forcing publishers/researchers to append a valid topic for each news item would ensure that the news would only reach the people responsible for that topic.
 
-\section{DNS in "A typical Kindergarten problem"}
-
+Another useful feature would be the possibility to receive news that had come in during the night or the weekend. This would be useful on some topics, whereas other topics, such as "Gossip" and "Breaking news" would need some sort of expiration time, since they get outdated or obsolete within short time.
 
 \section{Requirements}
+We need to set up a Distributed Service that allows researchers to publish data to an internal news stream publishing different topics on the network. Each Journalist/writer would be allowed to subscribe to individual topics and only receive associated messages.
+Messages should be delivered independent on time and possibly unknown receivers. In other words, they should be decoupled in space and time.
 
