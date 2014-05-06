@@ -1,6 +1,8 @@
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
+import com.rti.dds.infrastructure.DurabilityQosPolicyKind;
 import com.rti.dds.infrastructure.Duration_t;
+import com.rti.dds.infrastructure.HistoryQosPolicyKind;
 import com.rti.dds.publication.DataWriterQos;
 import com.rti.dds.publication.Publisher;
 import com.rti.dds.topic.TopicQos;
@@ -20,11 +22,14 @@ public class mainClass {
 
             TopicQos topicQos = DomainParticipant.TOPIC_QOS_DEFAULT;
             DataWriterQos dataWriterQos = Publisher.DATAWRITER_QOS_DEFAULT;
-            Duration_t duration_t = new Duration_t(10,10);
-            //LifespanQosPolicy lifespanQosPolicy = new LifespanQosPolicy();
+            Duration_t duration_t = new Duration_t(100000,100000);
 
             topicQos.lifespan.duration.add(duration_t);
+
             dataWriterQos.lifespan.duration.add(duration_t);
+            dataWriterQos.durability.kind = DurabilityQosPolicyKind.TRANSIENT_DURABILITY_QOS;
+            dataWriterQos.history.kind = HistoryQosPolicyKind.KEEP_LAST_HISTORY_QOS;
+            dataWriterQos.history.depth = 100;
 
             OfficePublisher gossipper = new OfficePublisher(GOSSIP_TOPIC, DomainParticipant.TOPIC_QOS_DEFAULT, DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT, dataWriterQos);
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

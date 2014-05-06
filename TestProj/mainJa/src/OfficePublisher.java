@@ -30,7 +30,7 @@ public class OfficePublisher {
         _topicName = topicName;
         _topicQos = qos;
         _domainParticipantQos = domainParticipantQos;
-        _dataWriterQos = _dataWriterQos;
+        _dataWriterQos = dataWriterQos;
 
 
         // Create the DDS Domain participant on domain ID 0
