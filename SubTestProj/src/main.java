@@ -1,15 +1,8 @@
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
 import com.rti.dds.infrastructure.*;
-import com.rti.dds.publication.DataWriterQos;
-import com.rti.dds.publication.Publisher;
-import com.rti.dds.subscription.DataReader;
 import com.rti.dds.subscription.DataReaderQos;
-import com.rti.dds.subscription.SampleInfo;
 import com.rti.dds.subscription.Subscriber;
-import com.rti.dds.topic.Topic;
-import com.rti.dds.type.builtin.StringDataReader;
-import com.rti.dds.type.builtin.StringTypeSupport;
 
 /**
  * Created by chj on 5/6/14.
@@ -27,7 +20,21 @@ public class main {
 
         DataReaderQos GossipQoS = Subscriber.DATAREADER_QOS_DEFAULT;
 
+        GossipQoS.reliability.kind = ReliabilityQosPolicyKind.RELIABLE_RELIABILITY_QOS;
+
         GossipQoS.durability.kind = DurabilityQosPolicyKind.TRANSIENT_DURABILITY_QOS;
+
+        GossipQoS.ownership.kind = OwnershipQosPolicyKind.SHARED_OWNERSHIP_QOS;
+
+        GossipQoS.history.kind = HistoryQosPolicyKind.KEEP_LAST_HISTORY_QOS;
+        GossipQoS.history.depth = 100;
+
+        GossipQoS.liveliness.kind = LivelinessQosPolicyKind.AUTOMATIC_LIVELINESS_QOS;
+        GossipQoS.liveliness.lease_duration.add(new Duration_t(Duration_t.DURATION_INFINITY_SEC, Duration_t.DURATION_INFINITY_NSEC));
+
+        //Deadline
+
+        GossipQoS.time_based_filter.minimum_separation.add(new Duration_t(0, 0));
 
 
         OfficeSubscriber GossipSubscriber = new OfficeSubscriber(
@@ -36,6 +43,12 @@ public class main {
                 GossipQoS,
                 "Gossip");
         OfficeSubscriber SportsSubscriber = new OfficeSubscriber(
+                DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
+                DomainParticipant.TOPIC_QOS_DEFAULT,
+                Subscriber.DATAREADER_QOS_DEFAULT,
+                "Sport");
+
+        OfficeSubscriber SportsSubscriber1 = new OfficeSubscriber(
                 DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
                 DomainParticipant.TOPIC_QOS_DEFAULT,
                 Subscriber.DATAREADER_QOS_DEFAULT,
