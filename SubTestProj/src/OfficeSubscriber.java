@@ -8,10 +8,7 @@ import com.rti.dds.domain.DomainParticipantQos;
 import com.rti.dds.infrastructure.RETCODE_ERROR;
 import com.rti.dds.infrastructure.RETCODE_NO_DATA;
 import com.rti.dds.infrastructure.StatusKind;
-import com.rti.dds.subscription.DataReader;
-import com.rti.dds.subscription.DataReaderAdapter;
-import com.rti.dds.subscription.SampleInfo;
-import com.rti.dds.subscription.Subscriber;
+import com.rti.dds.subscription.*;
 import com.rti.dds.topic.Topic;
 import com.rti.dds.topic.TopicQos;
 import com.rti.dds.type.builtin.StringDataReader;
@@ -27,12 +24,12 @@ public class OfficeSubscriber extends DataReaderAdapter{
     private Topic mTopic;
     private StringDataReader mDataReader;
 
-    public OfficeSubscriber(DomainParticipantQos objParticipantQoS, TopicQos objTopicQoS, String strTopicName) {
+    public OfficeSubscriber(DomainParticipantQos objParticipantQoS, TopicQos objTopicQoS, DataReaderQos objDataReaderQos, String strTopicName) {
 
         // Create the DDS Domain mParticipant on domain ID 0
         mParticipant = DomainParticipantFactory.get_instance().create_participant(
                 0, // Domain ID = 0
-                DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT,
+                objParticipantQoS,
                 null, // listener
                 StatusKind.STATUS_MASK_NONE);
 
@@ -46,7 +43,7 @@ public class OfficeSubscriber extends DataReaderAdapter{
         mTopic = mParticipant.create_topic(
                 strTopicName,
                 StringTypeSupport.get_type_name(),
-                DomainParticipant.TOPIC_QOS_DEFAULT,
+                objTopicQoS,
                 null, // listener
                 StatusKind.STATUS_MASK_NONE);
         if (mTopic == null) {
@@ -57,7 +54,7 @@ public class OfficeSubscriber extends DataReaderAdapter{
         // Create the data reader using the default publisher
         mDataReader = (StringDataReader) mParticipant.create_datareader(
                         mTopic,
-                        Subscriber.DATAREADER_QOS_DEFAULT,
+                        objDataReaderQos,
                         this,         // Listener
                         StatusKind.DATA_AVAILABLE_STATUS);
         if (mDataReader == null) {
