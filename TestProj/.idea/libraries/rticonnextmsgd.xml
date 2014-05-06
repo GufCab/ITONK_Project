@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="rticonnextmsgd">
+    <CLASSES>
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/rticonnextmsgd.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlog.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlogdatamodel.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/log4j-1.2.16.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/rtijmsd.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/nddsjavad.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlogd.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/rtijms.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/rticonnextmsg.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/antlr.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlogdatamodeld.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/rtiddsgen.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/aspectjrt.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlogdatamodel.jar!/" />
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/distlogdatamodeld.jar!/" />
+    </SOURCES>
+  </library>
+</component>

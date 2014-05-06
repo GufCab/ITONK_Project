@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="nddsjava">
+    <CLASSES>
+      <root url="jar:///usr/local/RTI/ndds.5.0.0/class/nddsjava.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
