@@ -1,0 +1,9 @@
+/**
+ * Created by chj on 5/5/14.
+ */
+public class adf {
+}
+
+
+
+/usr/lib/jvm/java-7-openjdk-amd64/bin/java -classpath /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/compilefontconfig.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/management-agent.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/javazic.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/java-atk-wrapper.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunpkcs11.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/pulse-java.jar:/home/chj/Git/ITONK_Project/02_DDS/Code/Project/out/production/Publisher:/home/chj/RTI/ndds.5.0.0/class/antlr.jar:/home/chj/RTI/ndds.5.0.0/class/rtijms.jar:/home/chj/RTI/ndds.5.0.0/class/distlog.jar:/home/chj/RTI/ndds.5.0.0/class/rtijmsd.jar:/home/chj/RTI/ndds.5.0.0/class/distlogd.jar:/home/chj/RTI/ndds.5.0.0/class/nddsjava.jar:/home/chj/RTI/ndds.5.0.0/class/aspectjrt.jar:/home/chj/RTI/ndds.5.0.0/class/nddsjavad.jar:/home/chj/RTI/ndds.5.0.0/class/rtiddsgen.jar:/home/chj/RTI/ndds.5.0.0/class/log4j-1.2.16.jar:/home/chj/RTI/ndds.5.0.0/class/rticonnextmsg.jar:/home/chj/RTI/ndds.5.0.0/class/rticonnextmsgd.jar:/home/chj/RTI/ndds.5.0.0/class/distlogdatamodel.jar:/home/chj/RTI/ndds.5.0.0/class/distlogdatamodeld.jar:/usr/local/IntelliJ_IDEA/lib/idea_rt.jar com.intellij.rt.execution.application.AppMain Main
