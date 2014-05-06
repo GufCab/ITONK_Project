@@ -27,13 +27,21 @@ public class main {
 
         DataReaderQos GossipQoS = Subscriber.DATAREADER_QOS_DEFAULT;
 
+        GossipQoS.reliability.kind = ReliabilityQosPolicyKind.RELIABLE_RELIABILITY_QOS;
+
         GossipQoS.durability.kind = DurabilityQosPolicyKind.TRANSIENT_DURABILITY_QOS;
-        GossipQoS.durability.direct_communication = true;
+
+        GossipQoS.ownership.kind = OwnershipQosPolicyKind.SHARED_OWNERSHIP_QOS;
 
         GossipQoS.history.kind = HistoryQosPolicyKind.KEEP_LAST_HISTORY_QOS;
         GossipQoS.history.depth = 100;
 
-        GossipQoS.reliability.kind = ReliabilityQosPolicyKind.RELIABLE_RELIABILITY_QOS;
+        GossipQoS.liveliness.kind = LivelinessQosPolicyKind.AUTOMATIC_LIVELINESS_QOS;
+        GossipQoS.liveliness.lease_duration.add(new Duration_t(Duration_t.DURATION_INFINITY_SEC, Duration_t.DURATION_INFINITY_NSEC));
+
+        //Deadline
+
+        GossipQoS.time_based_filter.minimum_separation.add(new Duration_t(0, 0));
 
 
         OfficeSubscriber GossipSubscriber = new OfficeSubscriber(
