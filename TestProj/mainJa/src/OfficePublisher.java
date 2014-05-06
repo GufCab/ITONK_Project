@@ -4,7 +4,7 @@ import com.rti.dds.domain.DomainParticipantQos;
 import com.rti.dds.infrastructure.InstanceHandle_t;
 import com.rti.dds.infrastructure.RETCODE_ERROR;
 import com.rti.dds.infrastructure.StatusKind;
-import com.rti.dds.publication.Publisher;
+import com.rti.dds.publication.DataWriterQos;
 import com.rti.dds.topic.Topic;
 import com.rti.dds.topic.TopicQos;
 import com.rti.dds.type.builtin.StringDataWriter;
@@ -24,11 +24,14 @@ public class OfficePublisher {
     private DomainParticipant _domainParticipant;
     private Topic _topic;
     private StringDataWriter _dataWriter;
+    private DataWriterQos _dataWriterQos;
 
-    public OfficePublisher(String topicName, TopicQos qos, DomainParticipantQos domainParticipantQos) {
+    public OfficePublisher(String topicName, TopicQos qos, DomainParticipantQos domainParticipantQos, DataWriterQos dataWriterQos) {
         _topicName = topicName;
         _topicQos = qos;
         _domainParticipantQos = domainParticipantQos;
+        _dataWriterQos = _dataWriterQos;
+
 
         // Create the DDS Domain participant on domain ID 0
         _domainParticipant = DomainParticipantFactory.get_instance().create_participant(
@@ -57,15 +60,13 @@ public class OfficePublisher {
         _dataWriter =
                 (StringDataWriter) _domainParticipant.create_datawriter(
                         _topic,
-                        Publisher.DATAWRITER_QOS_DEFAULT,
+                        _dataWriterQos,
                         null, // listener
                         StatusKind.STATUS_MASK_NONE);
         if (_dataWriter == null) {
             System.err.println("Unable to create data writer\n");
             return;
         }
-
-
 
         System.out.println("Publisher created for: " + _topicName);
     }

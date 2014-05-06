@@ -1,5 +1,9 @@
 import com.rti.dds.domain.DomainParticipant;
 import com.rti.dds.domain.DomainParticipantFactory;
+import com.rti.dds.infrastructure.Duration_t;
+import com.rti.dds.publication.DataWriterQos;
+import com.rti.dds.publication.Publisher;
+import com.rti.dds.topic.TopicQos;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,8 +18,15 @@ public class mainClass {
 
         public static final void main(String[] args) {
 
+            TopicQos topicQos = DomainParticipant.TOPIC_QOS_DEFAULT;
+            DataWriterQos dataWriterQos = Publisher.DATAWRITER_QOS_DEFAULT;
+            Duration_t duration_t = new Duration_t(10,10);
+            //LifespanQosPolicy lifespanQosPolicy = new LifespanQosPolicy();
 
-            OfficePublisher gossipper = new OfficePublisher(GOSSIP_TOPIC, DomainParticipant.TOPIC_QOS_DEFAULT, DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT);
+            topicQos.lifespan.duration.add(duration_t);
+            dataWriterQos.lifespan.duration.add(duration_t);
+
+            OfficePublisher gossipper = new OfficePublisher(GOSSIP_TOPIC, DomainParticipant.TOPIC_QOS_DEFAULT, DomainParticipantFactory.PARTICIPANT_QOS_DEFAULT, dataWriterQos);
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
             while (true) {
