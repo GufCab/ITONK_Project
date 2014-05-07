@@ -32,7 +32,22 @@
 
 %Misc
 %----------------------------------------------------------
-\usepackage{cite}
 \usepackage{appendix}
 \usepackage{amssymb}
 \usepackage{url}
+
+%Refrences / Bibliography
+%----------------------------------------------------------
+\usepackage[autostyle]{csquotes}
+
+\usepackage[
+    backend=biber,
+    style=authoryear-icomp,
+    sortlocale=da_DK,
+    natbib=true,
+    url=false, 
+    doi=true,
+    eprint=false
+]{biblatex}
+
+\addbibresource{../Refrences/refBooks.bib}
