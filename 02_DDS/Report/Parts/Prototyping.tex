@@ -88,6 +88,13 @@ The reader is specifically a StringDataReader, as the topics in this system, pub
 	\captionof{figure}{Creating the StringDataReader in OfficeSubscriber constructor.}
 \end{center}
 
+The function actually reading from the DataReader is seen on the figure and is a part of the OfficeSubscriber class.
+
+\begin{center}
+	\includegraphics[scale=0.75]{on_data_available.png}
+	\captionof{figure}{The on data available function.}
+\end{center}
+
 \section{Quality Of Service}
 The purpose of setting up QoS for this project, other than the defaults built in to the connect middleware, is to persist data in a way, so that a subscriber will get the last few messages, even if they were published before the subscriber became online.
 
@@ -138,4 +145,35 @@ As seen on the following figure, a default QoS object is created and the custom 
 	\captionof{figure}{Setting the QoS parameters programatically}
 \end{center}
 
+
+
+
 \section{Tests}
+For testing the created OfficeSubscriber and OfficePublishers, two small test programs are written, to set up a system as seen on figure 4.2 with two publishers (Gossip and Sport) and three Subscribers(Gossip, Sport, Sport). 
+
+The publisher program will let a user type messages to the different topics and the subscriber program will print all incoming messages to the console.
+
+When the program is run and messages are types into the console, to be sent, only the Sports subscriber should receive messages on the sports topic and only the Gossip subscribers should receive data published to the gossip topic. 
+
+The main method for the publisher looks like this:
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{officePubMain.png}}
+	\captionof{figure}{The routine taking data from the user and publishing it to the appropriate topics.}
+\end{center}
+
+And when running the publisher main, the output is 
+
+\begin{center}
+	\fbox{\includegraphics[scale=0.8]{outputPublisherMain.png}}
+	\captionof{figure}{Output from the Publishers main. Notice the input messages.}
+\end{center}
+
+When these messages are published, the subscriber shows 
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{subscriberOutputMain.png}}
+	\captionof{figure}{Output from the Subscriber main. Notice the output messages.}
+\end{center}
+
+As can be seen, the input messages are shown. The Sports messages are show twice, as there are two subscribers to this.
