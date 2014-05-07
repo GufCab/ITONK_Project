@@ -20,8 +20,6 @@ DDS implements the Publish/Subscribe middleware paradigm that is described in th
 
 \subsection{Alternatives to DDS}
 
-
-
 There are a number of different implementations of middleware in distributed systems where Publish/Subscribe as used in DDS is just one example. An alternative is Enterprise Messaging System (EMS) that is a set of standards that allows organisations to send messages between computer systems using standard formats like XML and SOAP.
 TIBCO Enterprise Messaging Service is an example of implementation of EMS.
 
@@ -71,8 +69,7 @@ You can set up different domains that allows different groups of computers to re
 	\captionof{figure}{DDS entities}
 \end{center}
 
-%shapes demo
-We ran the shapes demo that came with RTI connext to get an understanding of how the framework works.
+We ran the shapes demo that came with RTI connext to get an understanding of how the framework works and what some of the QoS parameters did.
 
 \begin{center}
 	\includegraphics[width=\textwidth]{Shapes_demo.PNG}
@@ -80,3 +77,15 @@ We ran the shapes demo that came with RTI connext to get an understanding of how
 \end{center}
 
 \subsection{Configuration on linux}
+
+To set up RTI Connext on Linux for java development you have to set up a few different environment variables. That lets the commandline compiler find RTIs libraries. If you are using an IDE then you have to include the library from /RTI/ndds.5.0.0/class into the project.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{connext_environment.PNG}
+%	\captionof{figure}{RTI Connext environmenvariables}
+\end{center}
+
+\begin{center}
+	\includegraphics[width=\textwidth]{connext_environment1.PNG}
+	\captionof{figure}{RTI Connext environmenvariables}
+\end{center}
