@@ -28,6 +28,10 @@ The functionality is implemented in lower level languages and is exposed through
 
 To use the functionality of Connext (e.g. interconnecting publishers and subscribers), the right classes must be used. The classes used, will be described in the following. 
 
+\subsection{OfficePublisher}
+
+\subsection{OfficeSubscriber}
+
 \subsection{Domain Participant}
 The Domain Participant is the main interface to the domain (see section 2.6). This class enables us to create all the other classes needed for communication through the middleware.
 
@@ -65,11 +69,24 @@ As we do not have a specific Publisher, the DataWriter is created through the Do
 	\captionof{figure}{Creating the StringDataWriter in OfficePublisher constructor.}
 \end{center}
 
+The writer exposes a \textit{Write(String message)} function, used for publishing data.
+
 \section{Subscriber}
 To subscribe to data on a topic, a Subscriber and a DataReader are needed. The Subscriber class can be used to group DataReaders and set common QoS parameters. Just like with the Publisher this isn't actually needed, as the middleware can implicitly create a default Subscriber for us. 
 
 \subsection{DataReader}
-The DataReader is in charge for actually being notified of data. This object subscribes to a Topic and will receive all messages published for this topic (if they are not filtered 
+The DataReader is in charge for actually being notified of data. This object subscribes to a Topic and will receive all messages published for this topic (if they are not filtered away based on content filters and/or QoS mismatches). 
+
+The DataReader takes a Topic object as well as a listener object for its constructor. The listener object defines a callback function, which will be called when the DataReader receives a message.
+
+In this application, the OfficeSubscriber inherits from DataReaderAdapter, which can be passed as a listener. Thus, a pointer to the calling OfficeSubscriber is passed to the DataReader (through af \textit{this} pointer).
+
+The reader is specifically a StringDataReader, as the topics in this system, publish Strings as messages. The StringDataReader is a builtin class in the DDS. 
+
+ \begin{center}
+	\fbox{\includegraphics[scale=1]{creatingDataReader.png}}
+	\captionof{figure}{Creating the StringDataReader in OfficeSubscriber constructor.}
+\end{center}
 
 \section{Quality Of Service}
 The purpose of setting up QoS for this project, other than the defaults built in to the connect middleware, is to persist data in a way, so that a subscriber will get the last few messages, even if they were published before the subscriber became online.
