@@ -1,8 +1,19 @@
 \chapter{Data Distribution Service}
 \section{Overview}
-
+The concept of distributed applications is to enable seamless communication between systems. There are a number of different ways to achieve this and the one we are focusing on is Data distribution service for real-time systems (DDS).
+It is a standard developed by Object Management Group (OMG) that enables communication between computers, that is decoupled in space, time and flow. This means that the computers don't have to know each other and they don't have to be ready to receive when a message is sent. It uses a publish/subscribe pattern to send and receive messages that can be customised by a list of quality of service parameters.
 
 \section{Middleware}
+To achieve this seamless communication some layer of software is needed to handle the network communication and distribution of data. This layer of software is called middleware.
+
+Middleware can be defined by this quote:
+
+"A layer of software residing on every machine, sitting between the
+underlying operating system and the distributed applications,
+whose purpose is to mask the heterogeneity of the cooperating
+platforms and provide a simple, consistent and integrated
+distributed programming environment."\footnote{Coulouris, G., J. Dollimore, T. Kindberg, and G. Blair (2001). Distributed systems: Concepts and design. Pearson.}
+
 \subsection{What and why?}
 
 
