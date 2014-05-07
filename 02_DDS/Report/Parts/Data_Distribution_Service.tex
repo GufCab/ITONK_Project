@@ -49,6 +49,22 @@ The QoS can be set programmatically through properties and structs in the respec
 
 
 \section{Connext RTI}
+This rapport focuses on the implementation of DDS that is RTI Connext. It is made by the US based company Real-Time Innovations and it is closed source. It can be used with the following programming languages: C, C++, JAVA, .NET and Ada. 
+It is a full implementation of the standard and lets you set up an arbitrary number of custom subscribers and publishers in a number of applications.
 
+You can set up different domains that allows different groups of computers to receive different messages. The picture below shows the message flow inside a single domain where subscribers subscribe to specific topics.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{DDS_entities.png}
+	\captionof{figure}{DDS entities}
+\end{center}
+
+%shapes demo
+We ran the shapes demo that came with RTI connext to get an understanding of how the framework works.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{Shapes_demo.PNG}
+	\captionof{figure}{RTI Connext shapes demo}
+\end{center}
 
 \subsection{Configuration on linux}
