@@ -1,19 +1,34 @@
-\chapter{Data Distribution Service}
+﻿\chapter{Data Distribution Service}
 \section{Overview}
-
+The concept of distributed applications is to enable seamless communication between systems. There are a number of different ways to achieve this and the one we are focusing on is Data distribution service for real-time systems (DDS).
+It is a standard developed by Object Management Group (OMG) that enables communication between computers, that is decoupled in space, time and flow. This means that the computers don't have to know each other and they don't have to be ready to receive when a message is sent. It uses a publish/subscribe pattern to send and receive messages that can be customised by a list of quality of service parameters.
 
 \section{Middleware}
+
 \subsection{What and why?}
+To achieve this seamless communication some layer of software is needed to handle the network communication and distribution of data. This layer of software is called middleware.
 
+Middleware can be defined by this quote:
 
-\subsection{}
+"A layer of software residing on every machine, sitting between the
+underlying operating system and the distributed applications,
+whose purpose is to mask the heterogeneity of the cooperating
+platforms and provide a simple, consistent and integrated
+distributed programming environment."\footnote{Coulouris, G., J. Dollimore, T. Kindberg, and G. Blair (2001). Distributed systems: Concepts and design. Pearson.}
+
+DDS implements the Publish/Subscribe middleware paradigm that is described in the next section.
+
+\subsection{Alternatives to DDS}
 
 \begin{center}
 	\includegraphics[width=\textwidth]{ifconfig.png}
 	\captionof{figure}{Eksempel på billede}
 \end{center}
 
+There are a number of different implementations of middleware in distributed systems where Publish/Subscribe as used in DDS is just one example. An alternative is Enterprise Messaging System (EMS) that is a set of standards that allows organisations to send messages between computer systems using standard formats like XML and SOAP.
+TIBCO Enterprise Messaging Service is an example of implementation of EMS.
 
+TIBCO EMS could be used as a real time messaging system in a big cooperation. It is secure as it uses TSL/SSL, it is reliable and scalable via load balancing and guaranteed message delivery models. And it supports a wide array of technologies that secures easy development and reuse of existing systems.
 
 \section{Publish/Subscribe pattern}
 The publish/subscribe pattern is a well known programming paradigm. It is more well known in the form of the Observer Pattern described by Gang of Four \footnote{\citep{DesignPatterns}}
