@@ -1,6 +1,12 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract} 
+Larger systems often contain several different entities. These entities can assume very varied roles in the system but often have a need to communicate with each other. This can be done implicitly when the entities are on the same machine, but what about when the program runs on 10 different computers?
 
+This report describes the process of setting up middleware (RTI Connext) to distribute messages between different entities in a system to enable a large office environment to pass messages between co-workers. To get an understanding of the subject matter, the theory behind DDS (Data Distribution Service) and Middleware is thoroughly described in the report. 
+
+A prototype is written in Java, using the RTI Connext API. This prototype shows the use of Domains, Topics and DataReader/Writer classes in a basic example. 
+
+The result is a simple implementation, using DDS Middleware, showing how easy it is, to solve a relatively complex problem of message distribution.
 
 \setcounter{tocdepth}{1}
 \tableofcontents
