@@ -4,7 +4,7 @@
 The system involves subscribers, publishers and different topics, as to show the workings of the connext middleware. 
 
 \begin{center}
-	\includegraphics[width=\textwidth]{bdd_image.png}
+	\fbox{\includegraphics[width=\textwidth]{bdd_image.png}}
 	\captionof{figure}{BDD of the Office Message System}
 \end{center}
 
@@ -15,25 +15,61 @@ The prototype will consist of two programs running side by side. One will spawn 
 The configuration is setup as seen in figure 4.2.
 
 \begin{center}
-	\includegraphics[width=\textwidth]{ibd_image.png}
+	\fbox{\includegraphics[width=\textwidth]{ibd_image.png}}
 	\captionof{figure}{IBD of the Office Message System}
 \end{center}
 
 As is seen, a publisher publishing on the "Gossip" topic and one for the "Sports" topic are in the system. The publishers will communicate to the subscribers through the connext middleware.
 
 \section{Connext RTI}
+The Connext RTI middle ware implementation gives access to a series of objects and implementations for communicating over the network.
+
+The functionality is implemented in lower level languages and is exposed through several high-level languages (C\#, Java etc.). Our prototype is written in Java, as we wanted to run the prototype on Linux. 
+
+To use the functionality of Connext (e.g. interconnecting publishers and subscribers), the right classes must be used. The classes used, will be described in the following. 
 
 \subsection{Domain Participant}
+The Domain Participant is the main interface to the domain (see section 2.6). This class enables us to create all the other classes needed for communication through the middleware.
+
+This class makes sure that all other created classes are created for the correct domain. This is created with an injected QoS object (set to default).
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{creatingDomainParticipant.png}}
+	\captionof{figure}{Creating the DomainParticipant in OfficePublisher constructor}
+\end{center}
 
 \subsection{Topics}
+Our subscription model is Topic based, meaning that the middleware only distinguishes between messages based on the topic they were created for. 
 
+The topic is created through a Factory Method exposed by the created domain participant. The name and data type of the topic will be given as arguments to this method. 
+
+Our topics are using the built-in string type to transfer messages.
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{creatingTopic.png}}
+	\captionof{figure}{Creating the Topic in OfficePublisher constructor}
+\end{center}
 
 \section{Publisher}
+To publish data on the domain, a publisher and a DataWriter are needed. The Publisher is used for control of the DataWriter. 
+A DataWriter can only write to one specific Topic. A Publisher object can be used for grouping an arbitrary number of DataWriters with an overall QoS and specific settings.
+In this application, this grouping is not needed, so a Publisher object is not created explicitly. The middleware will use a default Publisher, hidden from the user.
+
 \subsection{DataWriter}
+This object takes care of the actual writing to the domain. A specific implementation of the object, StringDataWriter is used to publish messages with the String type. 
+
+As we do not have a specific Publisher, the DataWriter is created through the DomainParticipant with the created Topic object as argument.
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{creatingDataWriter.png}}
+	\captionof{figure}{Creating the StringDataWriter in OfficePublisher constructor.}
+\end{center}
 
 \section{Subscriber}
-\subsection{DataReader}
+To subscribe to data on a topic, a Subscriber and a DataReader are needed. The Subscriber class can be used to group DataReaders and set common QoS parameters. Just like with the Publisher this isn't actually needed, as the middleware can implicitly create a default Subscriber for us. 
 
+\subsection{DataReader}
+The DataReader is in charge for actually being notified of data. This object subscribes to a Topic and will receive all messages published for this topic (if they are not filtered 
 
 \section{Quality Of Service}
 The purpose of setting up QoS for this project, other than the defaults built in to the connect middleware, is to persist data in a way, so that a subscriber will get the last few messages, even if they were published before the subscriber became online.
