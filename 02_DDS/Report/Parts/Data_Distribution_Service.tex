@@ -1,4 +1,4 @@
-﻿\chapter{Data Distribution Service}
+\chapter{Data Distribution Service}
 \section{Overview}
 The concept of distributed applications is to enable seamless communication between systems. There are a number of different ways to achieve this and the one we are focusing on is Data distribution service for real-time systems (DDS).
 It is a standard developed by Object Management Group (OMG) that enables communication between computers, that is decoupled in space, time and flow. This means that the computers don't have to know each other and they don't have to be ready to receive when a message is sent. It uses a publish/subscribe pattern to send and receive messages that can be customised by a list of quality of service parameters.
@@ -20,10 +20,7 @@ DDS implements the Publish/Subscribe middleware paradigm that is described in th
 
 \subsection{Alternatives to DDS}
 
-\begin{center}
-	\includegraphics[width=\textwidth]{ifconfig.png}
-	\captionof{figure}{Eksempel på billede}
-\end{center}
+
 
 There are a number of different implementations of middleware in distributed systems where Publish/Subscribe as used in DDS is just one example. An alternative is Enterprise Messaging System (EMS) that is a set of standards that allows organisations to send messages between computer systems using standard formats like XML and SOAP.
 TIBCO Enterprise Messaging Service is an example of implementation of EMS.
@@ -32,8 +29,17 @@ TIBCO EMS could be used as a real time messaging system in a big cooperation. It
 
 \section{Publish/Subscribe pattern}
 The publish/subscribe pattern is a well known programming paradigm. It is more well known in the form of the Observer Pattern described by Gang of Four \footnote{\citep{DesignPatterns}}
+The idea of the publish/subscribe pattern is loosening the coupling between a publisher and a subscriber. A publisher is a entity that has some data or content to deliver or distribute. A subscriber is interested in obtaining this information when it is published, but without needing to know where it is published from.
+The subscriber subscribes to a topic or type at a EventService of some kind. When a publisher notifies the EventService with the new data, The EventService will notify the concerned subscribers. This is illustrated in the figure below.
 
+\begin{center}
+	\fbox {
+	\includegraphics[width=\textwidth]{PublishSubscribe_Pattern.png}
+	}
+	\captionof{figure}{Sublish/Subscribe pattern from 02_DDS slideshow}
+\end{center}
 
+This is the same approach used by DDS. The Middleware must act as the EventService, and the 
 
 \subsection{Coupling}
 
