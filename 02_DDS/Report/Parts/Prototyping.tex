@@ -21,16 +21,26 @@ The configuration is setup as seen in figure 4.2.
 
 As is seen, a publisher publishing on the "Gossip" topic and one for the "Sports" topic are in the system. The publishers will communicate to the subscribers through the connext middleware.
 
+\subsection{OfficePublisher}
+This class is used as a wrapper, containing most of the RTI classes. This is not to be confused with the RTI Publisher class. 
+
+The constructor for this class takes references to the needed QoS's as arguments. It also takes a String with the name of the topic, the DataWriter should publish to. This way, an OfficePublisher can be configured to publish to an arbitrary Topic (We use "Gossip" and "Sport"). The difference between the publishers, is then merely the topics they publish to.
+
+The OfficePublisher has a public method \textit{PublishMessage(String message)}. When invoked, this message publishes the message to the middleware with the OfficePublishers topic. 
+
+\subsection{OfficeSubscriber}
+This class is used as a wrapper, containing most of the RTI classes needed for creating a subscriber. This is not to be confused with the RTI Subscriber class.
+
+The constructor for this class takes references to the needed QoS's as arguments. It also takes a String with the name of the topic, the DataReader should subscribe to. This way, an OfficeSubscriber can be configured to subscribe to an arbitrary Topic (We use "Gossip" and "Sport"). The difference between the subscrubers, is then merely the topics they publish to.
+
+The OfficeSubscriber extends the class \textit{DataReaderAdapter}. This way, an object of this class can pass a pointer to itself as a listener-object on the DataReader (see DataReader section).
+
 \section{Connext RTI}
 The Connext RTI middle ware implementation gives access to a series of objects and implementations for communicating over the network.
 
 The functionality is implemented in lower level languages and is exposed through several high-level languages (C\#, Java etc.). Our prototype is written in Java, as we wanted to run the prototype on Linux. 
 
 To use the functionality of Connext (e.g. interconnecting publishers and subscribers), the right classes must be used. The classes used, will be described in the following. 
-
-\subsection{OfficePublisher}
-
-\subsection{OfficeSubscriber}
 
 \subsection{Domain Participant}
 The Domain Participant is the main interface to the domain (see section 2.6). This class enables us to create all the other classes needed for communication through the middleware.
