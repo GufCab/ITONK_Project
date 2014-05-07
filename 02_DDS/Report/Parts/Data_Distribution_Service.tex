@@ -46,7 +46,9 @@ This is the same approach used by DDS. The Middleware must act as the EventServi
 
 
 \section{Real-time systems}
+A real-time system is one that "controls an environment by receiving data, processing them, and returning the results sufficiently quickly to affect the environment at that time." \footnote{Coulouris, G., J. Dollimore, T. Kindberg, and G. Blair (2001). Distributed systems: Concepts and design. Pearson.}
 
+If the system can't deliver a response in the given time frame then there will typically be some kind of consequence.
 
 \section{Quality Of Service}
 For setting up the connections between entities, Publishers, Middleware and Subscribers must agree on certain terms. Quality of Service (QoS) lets the middleware know how to treat connections between publishers and subscribers as well as how to treat messages.
