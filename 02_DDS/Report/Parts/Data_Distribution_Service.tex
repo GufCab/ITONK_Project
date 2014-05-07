@@ -37,14 +37,32 @@ The subscriber subscribes to a topic or type at a EventService of some kind. Whe
 	\captionof{figure}{Sublish/Subscribe pattern}
 \end{center}
 
-This is the same approach used by DDS. The Middleware must act as the EventService, and the 
+This is the same approach used by DDS. The Middleware must act as the EventService, and the application implements the publisher and subscriber.
 
 \subsection{Coupling}
+There are tree types of coupling. Coupling in Space, Flow and Time.
 
+\textbf{Space decoupling} is when the publisher and subscriber do not have to know each other. This is done by the introduction of the EventService.  Here the data is routed from the publisher through to every subscriber that needs this data. It is not necessary to pass references between the entities.
 
-\subsection{Topic based}
-\subsection{Content based}
-\subsection{Type based}
+\textbf{Flow decoupling} is when the flow of the program will not be blocked. For example it is not necessary for the publisher to have a subscriber to deliver the message to, since it will be consumed (and maybe stored) by the EventService. 
+
+\textbf{Time decoupling} is, when the time of delivery/reception of a message is independent on the time of transmission. As shown in the figure below, the subscriber will receive the published message, despite the fact that is has not been connected at the time of transmission AND the publisher has been disconnected since.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{TimeDecoupling.png}
+	\captionof{figure}{Illustration shwong decoupling in time from 02DDS Slideshow}
+\end{center}
+
+The Data Distribution Service as specified by OMG enables decoupling in all three  dimensions. This is defined through the use of Quality Of Service profiles.
+
+\subsection{Filtering}
+There are three different ways of publishing and subscribing to messages:
+
+\textbf{Topic based} publishing is a way of distributing data based on the topic of it. The publisher is responsible of defining the topic of a message when it is dispatched. The subscriber has to subscribe to these exact topics.
+
+\textbf{Content based} subscription is aimed at receiving data based on the content of it. The subscriber must utilize some filters which defines attributes or content that must be set.
+
+\textbf{Type based} is subscription that is based on member types. This enables for implementation closer bound to the programming language.
 
 
 \section{Real-time systems}
