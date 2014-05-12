@@ -37,6 +37,21 @@ The subscriber subscribes to a topic or type at a EventService of some kind. Whe
 
 This is the same approach used by DDS. The Middleware must act as the EventService, and the application implements the publisher and subscriber.
 
+\subsection{Data-Centric Publish-Subscribe}
+Publishing and Subscribing in DDS is Data-centric, in that everything is bound to the type/topic/content of the DATA. Subscribers only get the data they need/want and get to filter based on contents, keys and types. 
+The terms of the coupling between the Publishers and Subscribers are set up based on the data (see Quality of Service). The Data-Centric Publish-Subscribe interface is built directly from this model. Messages are being passed back and forth to the middleware and used by upper-layer applications.
+
+\subsection{Data Local Reconstruction Layer}
+An optional Data Local Reconstruction Layer (DLRL) can be added on top of the DCPS layer. This layer will give a further layer of abstraction from Application <--> Middleware. 
+This layer will take sent data and automatically update certain fields in local classes, so that data, that is really located remotely, will appear local. This will also make it possible to make complicated remote method calls, as if they were local. 
+
+\subsection{Interface Definition Language}
+To be able to use features such as DLRL, remote endpoints and the local applications must have a common "language" to describe certain interfaces and classes. This common language is the Interface Definition Language (IDL).
+
+Using this language as markup, two remote location can "talk" even though they are written in different programming languages!
+
+IDL descriptions are needed, if one is to use the DLRL, as the DLRL entities are created from IDL. 
+
 \subsection{Coupling}
 There are tree types of coupling. Coupling in Space, Flow and Time.
 
@@ -77,12 +92,18 @@ Another example is setting the \textit{deadline} parameter on a subscribers QoS.
 
 The QoS can be set programmatically through properties and structs in the respective classes or through XML configuration files. 
 
+DDS is data-centric, as QoS are always in some way related to the data being published/subscribed to. The terms of the communication, used as examples in this section, are also both related to how the data should be treated and when to expect new data. 
+
+So everything revolves around the data.
+
 
 \section{Connext RTI}
 This rapport focuses on the implementation of DDS that is RTI Connext. It is made by the US based company Real-Time Innovations and it is closed source. It can be used with the following programming languages: C, C++, JAVA, .NET and Ada. 
 It is a full implementation of the standard and lets you set up an arbitrary number of custom subscribers and publishers in a number of applications.
 
 You can set up different domains that allows different groups of computers to receive different messages. The picture below shows the message flow inside a single domain where subscribers subscribe to specific topics.
+
+For a specific description of the actual \textit{classes} and entities used in Connext RTI, please see \textbf{Prototyping}.
 
 \begin{center}
 	\includegraphics[width=\textwidth]{DDS_entities.png}

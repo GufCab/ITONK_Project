@@ -57,12 +57,19 @@ Our subscription model is Topic based, meaning that the middleware only distingu
 
 The topic is created through a Factory Method exposed by the created domain participant. The name and data type of the topic will be given as arguments to this method. 
 
+The topic name is the string, identifying the topic on the domain. This is the identifier for the topic. 
+
+The Topic type is the type of data, that will be transferred for the topic. This could be used to make two topics with the same name disticnt from each other, based on the type of data.
 Our topics are using the built-in string type to transfer messages.
+Custom types can be implemented as IDL.
+
+When creating custom types, it is possible to designate one of the fields in the type as a \textit{Key}. Subscribers can then filter on the key and thus, not receive all data published on the topic they subscribed to.
 
 \begin{center}
 	\fbox{\includegraphics[scale=1]{creatingTopic.png}}
 	\captionof{figure}{Creating the Topic in OfficePublisher constructor}
 \end{center}
+
 
 \section{Publisher}
 To publish data on the domain, a publisher and a DataWriter are needed. The Publisher is used for control of the DataWriter. 
@@ -101,7 +108,7 @@ The reader is specifically a StringDataReader, as the topics in this system, pub
 The function actually reading from the DataReader is seen on the figure and is a part of the OfficeSubscriber class.
 
 \begin{center}
-	\includegraphics[scale=0.75]{on_data_available.png}
+	\fbox{\includegraphics[scale=0.75]{on_data_available.png}}
 	\captionof{figure}{The on data available function.}
 \end{center}
 
@@ -144,14 +151,14 @@ Set to Automatic, to let the middleware check automatically. Lease duration set 
 \textbf{For DataWriters}
 As seen on the following figure, a default QoS object is created and the custom values are then set. This is done in the main function in \textit{mainClass.java} of the publisher project and the object is then passed to the OfficePublisher constructor.
 \begin{center}
-	\includegraphics[width=\textwidth]{SettingQoSPublishers.png}
+	\fbox{\includegraphics[width=\textwidth]{SettingQoSPublishers.png}}
 	\captionof{figure}{Setting the QoS parameters programatically}
 \end{center}
 
 \textbf{For DataReaders}
 As seen on the following figure, a default QoS object is created and the custom values are then set. This is done in the main function in \textit{main.java} of the subscriber project and the object is then passed to the OfficeSubscriber constructor.
 \begin{center}
-	\includegraphics[width=\textwidth]{SettingQoSSubscribers.png}
+	\fbox{\includegraphics[width=\textwidth]{SettingQoSSubscribers.png}}
 	\captionof{figure}{Setting the QoS parameters programatically}
 \end{center}
 
