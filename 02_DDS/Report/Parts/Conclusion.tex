@@ -2,9 +2,9 @@
 \section{Discussion and Results}
 The results of working with the case are seen under "Tests". It is seen, that a basic system for distributing messages has been implemented using the Connext Middleware. 
 
-Quality of Service parameters have been setup programatically. This makes it necessary to hardcode the parameters in the Java program. This made for easy testing and prototyping. However, a method of reading QoS parameters from XML files, is included in the technology. This could have been used for setting the QoS.
+Quality of Service parameters have been setup programatically. This makes it necessary to hardcode the parameters in the Java program. This is done to allow easy testing and prototyping. However, a method of reading QoS parameters from XML files, is included in the technology. This could have been used for setting the QoS.
 
-The given case required to distribute messages for different topics and receive them again in different subscribers.
+The given case required to distribute messages for different topics and receive them again in different subscribers and this has been achieved.
 
 \section{Conclusion}
 We ended up with a working prototype for an office messaging system that implements DDS for seamless connection between all the systems that uses the program.
@@ -13,4 +13,4 @@ The program was able to send and receive messages based on a topic that is injec
 We have thereby achieved our goal of implementing a working distributed system.
 
 \section{Perspectives}
-The prototype in this project did not implement custom data types and XML QoS profiles. In a further implementation, these technologies should be used. Specific types could be used to fully utilize the technology of RTI Connext middleware and object oriented programming. 
+The prototype in this project did not implement custom data types and XML QoS profiles. In a future implementation, these technologies could be used. Specific types could be used to fully utilize the technology of RTI Connext middleware and object oriented programming. 
