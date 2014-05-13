@@ -50,6 +50,7 @@ public class Client {
         {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
+
         }
 
         return response;
