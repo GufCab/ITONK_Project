@@ -133,6 +133,7 @@ public class Server implements Hello {
 
     public void SetLeader()
     {
+        _isElection = false;
         _leaderModule = new LeaderClass(_nodeNum);
         //_leaderModule.SendOrganizationMessages();
     }

@@ -35,7 +35,7 @@ public class MainProgram {
         //leader = new Node("Leader", 10, true);
 
         //slave5.StartQuesting();
-        slave5.StartBullyElection();
+        //slave5.StartBullyElection();
 
         //leader = null;
         System.gc();

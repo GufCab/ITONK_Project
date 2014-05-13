@@ -47,7 +47,8 @@ public class Node {
         String response = _client.CallGloriousLeader(_id);
         if (response.equals("NoResponse"))
         {
-            StartQuesting();
+            //StartQuesting();
+            StartBullyElection();
         }
     }
 
