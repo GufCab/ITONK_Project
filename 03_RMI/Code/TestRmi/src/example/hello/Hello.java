@@ -12,5 +12,4 @@ public interface Hello extends Remote{
     int QuestFunction() throws RemoteException;
     int BullyElection() throws RemoteException;
     void OrganizationMessage(int newLeader) throws RemoteException;
-
 }

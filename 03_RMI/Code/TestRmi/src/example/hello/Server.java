@@ -27,7 +27,7 @@ public class Server implements Hello {
         } catch (Exception e)
         {
             System.err.println("Server exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -49,7 +49,7 @@ public class Server implements Hello {
         } catch (Exception e)
         {
             System.err.println("Server exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
     }
@@ -82,7 +82,7 @@ public class Server implements Hello {
             } catch(Exception e)
             {
                 System.err.println("QuestFunction on ID " + responseID + e.toString());
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
 
@@ -101,31 +101,26 @@ public class Server implements Hello {
         System.out.println("Questing node: " + _nodeNum);
         int responseID = -1;
 
-        if(!_isElection) {
-            _isElection = true;
+        for(int i = _nodeNum + 1; i <= 10; i++)
+        {
+            try {
+                Registry registry = LocateRegistry.getRegistry(null);
 
-            for(int i = _nodeNum + 1; i <= 10; i++)
-            {
-                try {
-                    Registry registry = LocateRegistry.getRegistry(null);
-
-                    String registryEntry = "QuestNode" + i;
-                    Hello serverStub = (Hello)registry.lookup(registryEntry);
-                    responseID = serverStub.BullyElection();
-                } catch(Exception e) {
-                    System.err.println("QuestFunction on ID " + responseID + e.toString());
-                    e.printStackTrace();
-                }
-            }
-
-            //I have the greatest id
-            if(responseID == -1) {
-                //declare winner
-                System.out.println("I'm leader" + _nodeNum);
-                SetLeader();
+                String registryEntry = "QuestNode" + i;
+                Hello serverStub = (Hello)registry.lookup(registryEntry);
+                responseID = serverStub.BullyElection();
+            } catch(Exception e) {
+                System.err.println("QuestFunction on ID " + responseID + e.toString());
+                //e.printStackTrace();
             }
         }
 
+        //I have the greatest id
+        if(responseID == -1) {
+            //declare winner
+            System.out.println("I'm leader" + _nodeNum);
+            SetLeader();
+        }
 
         //someone is taking over
         return 1;
@@ -133,11 +128,9 @@ public class Server implements Hello {
 
     public void SetLeader()
     {
-        _isElection = false;
         _leaderModule = new LeaderClass(_nodeNum);
         //_leaderModule.SendOrganizationMessages();
     }
-
 }
 
 /*
