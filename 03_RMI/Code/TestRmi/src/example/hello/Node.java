@@ -60,5 +60,8 @@ public class Node {
     public int StartQuesting() {
         return _server.QuestFunction();
     }
+    public int StartBullyElection() {
+        return _server.BullyElection();
+    }
 
 }

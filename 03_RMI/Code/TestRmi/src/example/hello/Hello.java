@@ -10,4 +10,5 @@ public interface Hello extends Remote{
     String sayHello() throws RemoteException;
     int getNodeNum() throws RemoteException;
     int QuestFunction() throws RemoteException;
+    int BullyElection() throws RemoteException;
 }

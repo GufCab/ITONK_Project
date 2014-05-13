@@ -1,7 +1,6 @@
 package example.hello;
-import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 public class Server implements Hello {
     private String _id;
@@ -12,11 +11,13 @@ public class Server implements Hello {
     private final String NODE_NAME = "NodeHello";
     private int _currentLeader;
     private ILeader _leaderModule;
+    private Boolean _isElection;
 
     public Server(String id, int nodeNum, int _currentLeader)
     {
         _id = id;
         _nodeNum = nodeNum;
+        _isElection = false;
 
         try {
             _helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
@@ -63,13 +64,6 @@ public class Server implements Hello {
         System.out.println("Questing node: " + _nodeNum);
         int responseID = -1;
 
-        /*
-        if(_nodeNum == 10)
-        {
-            SetLeader();
-            return _nodeNum;
-        }
-        */
         for(int i = _nodeNum + 1; i <= 10; i++)
         {
             try {
@@ -99,6 +93,40 @@ public class Server implements Hello {
         SetLeader();
 
         return _nodeNum;
+    }
+
+    public int BullyElection() {
+        System.out.println("Questing node: " + _nodeNum);
+        int responseID = -1;
+
+        if(!_isElection) {
+            _isElection = true;
+
+            for(int i = _nodeNum + 1; i <= 10; i++)
+            {
+                try {
+                    Registry registry = LocateRegistry.getRegistry(null);
+
+                    String registryEntry = "QuestNode" + i;
+                    Hello serverStub = (Hello)registry.lookup(registryEntry);
+                    responseID = serverStub.BullyElection();
+                } catch(Exception e) {
+                    System.err.println("QuestFunction on ID " + responseID + e.toString());
+                    e.printStackTrace();
+                }
+            }
+
+            //I have the greatest id
+            if(responseID == -1) {
+                //declare winner
+                System.out.println("I'm leader" + _nodeNum);
+                SetLeader();
+            }
+        }
+
+
+        //someone is taking over
+        return 1;
     }
 
     public void SetLeader()
