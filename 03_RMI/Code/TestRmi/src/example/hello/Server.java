@@ -2,6 +2,8 @@ package example.hello;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
 public class Server implements Hello {
     private String _id;
     private int _nodeNum;
@@ -12,6 +14,8 @@ public class Server implements Hello {
     private int _currentLeader;
     private ILeader _leaderModule;
     private Boolean _isElection;
+
+    private int _nextNodeId;
 
     public Server(String id, int nodeNum, int _currentLeader)
     {
@@ -60,6 +64,95 @@ public class Server implements Hello {
         _currentLeader = newLeader;
     }
 
+
+    private void incrementNextNode()
+    {
+        _nextNodeId++;
+
+        if(_nextNodeId > 10)
+            _nextNodeId=0;
+    }
+
+
+    public void RingElectionFunction(int[] nodeIds)
+    {
+        boolean ringComplete = false;
+
+
+        int futureLeader = -1;
+
+        //Find out if ring is complete
+        for(int s:nodeIds)
+        {
+            if(s == _nodeNum)
+            {
+                ringComplete = true;
+                break;
+            }
+        }
+
+        if(ringComplete==true)
+        {
+            for(int node:nodeIds) {
+                if(node > futureLeader) {
+                    futureLeader = node;
+                }
+            }
+
+            try {
+                Registry registry = LocateRegistry.getRegistry(null);
+
+                String registryEntry = "QuestNode" + _nextNodeId;
+                Hello serverStub = (Hello) registry.lookup(registryEntry);
+
+                RingElectionSetNewLeader(futureLeader);
+
+
+            } catch (Exception e) {
+
+            }
+
+        } else {
+            //Ring is not complete
+            try {
+                Registry registry = LocateRegistry.getRegistry(null);
+
+                String registryEntry = "QuestNode" + _nextNodeId;
+                Hello serverStub = (Hello) registry.lookup(registryEntry);
+
+                nodeIds[nodeIds.length+1] = _nodeNum;
+
+                serverStub.RingElectionFunction(nodeIds);
+            } catch (Exception e) {
+
+            }
+        }
+
+
+    }
+
+    public void RingElectionSetNewLeader(int leaderId) {
+        if(leaderId==_nodeNum) {
+            this.SetLeader();
+        }
+
+        if(leaderId > _currentLeader) {
+            //if the received leaderId is larger then the known one
+            try {
+                Registry registry = LocateRegistry.getRegistry(null);
+
+                String registryEntry = "QuestNode" + _nextNodeId;
+                Hello serverStub = (Hello) registry.lookup(registryEntry);
+
+                RingElectionSetNewLeader(leaderId);
+            } catch (Exception e)
+            {
+
+            }
+        }
+
+
+    }
 
     public int QuestFunction()
     {
