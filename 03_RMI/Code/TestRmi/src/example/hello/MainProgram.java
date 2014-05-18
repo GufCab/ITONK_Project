@@ -7,6 +7,35 @@ import java.io.Console;
  */
 public class MainProgram {
     public static void main(String args[]) {
+        Node leader = new Node("Leader", 10, true);
+        //leader.SetLeader();
+
+        Node slave1 = new Node("Slave1", 1, false);
+        Node slave2 = new Node("Slave2", 2, false);
+        Node slave3 = new Node("Slave3", 3, false);
+        Node slave4 = new Node("Slave4", 4, false);
+        Node slave5 = new Node("Slave5", 5, false);
+
+
+        slave1.CallGloriousLeader();
+        slave2.CallGloriousLeader();
+        slave4.CallGloriousLeader();
+
+
+        leader = null;
+
+        slave5.SetLeader();
+
+        slave1.CallGloriousLeader();
+        slave2.CallGloriousLeader();
+        slave4.CallGloriousLeader();
+
+
+        while(true)
+        {}
+
+
+       /*
         Node leader = new Node("Leader", 8);
         leader.BeginServer();
 
@@ -22,16 +51,22 @@ public class MainProgram {
 
         leader.StopServer();
 
-        slave3.BeginServer();
+        slave1.BeginServer();
 
         slave3.GetHello();
         slave4.GetHello();
         slave2.GetHello();
 
+        slave1.StopServer();
+
+        slave2.BeginServer();
+        slave3.GetHello();
+        slave4.GetHello();
+        slave2.GetHello();
 
         while (true)
         {
         }
-
+*/
     }
 }

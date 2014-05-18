@@ -8,18 +8,27 @@ public class Node {
     private Client _client;
     private Server _server;
     private int _nodeNum;
+    private int _currentLeaderId;
+    private boolean _isLeader;
 
-    public Node(String id, int nodeNum)
+    public Node(String id, int nodeNum, boolean isLeader)
     {
         _id = id;
         _nodeNum = nodeNum;
 
         _client = new Client();
+        _server = new Server(id, _nodeNum, 10);
+        _isLeader = isLeader;
+
+        if(isLeader)
+        {
+            _server.SetLeader();
+        }
     }
 
     public void BeginServer()
     {
-        _server = new Server(_id, _nodeNum);
+        _server = new Server(_id, _nodeNum, _currentLeaderId);
     }
 
     public void StopServer()
@@ -31,6 +40,16 @@ public class Node {
     public void GetHello()
     {
         _client.GetHello(_id);
+    }
+
+    public void CallGloriousLeader()
+    {
+        _client.CallGloriousLeader(_id);
+    }
+
+    public void SetLeader()
+    {
+        _server.SetLeader();
     }
 
     public int GetNodeNum()

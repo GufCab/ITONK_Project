@@ -6,12 +6,13 @@ import java.rmi.registry.Registry;
 public class Client {
     private Registry _registry;
     private Hello _helloStub;
+    private ILeader _leader;
 
     public  Client()
     {
         try {
-            _registry = LocateRegistry.getRegistry(null);
-            _helloStub = (Hello) _registry.lookup("NodeHello");
+            //_registry = LocateRegistry.getRegistry(null);
+            //_helloStub = (Hello) _registry.lookup("NodeHello");
 
         } catch (Exception e)
         {
@@ -33,6 +34,25 @@ public class Client {
             System.err.println("Client exception: " + e.toString());
             e.printStackTrace();
         }
+    }
+
+    public String CallGloriousLeader(String nodeID)
+    {
+        String response = "NoResponse";
+
+        try {
+            _registry = LocateRegistry.getRegistry(null);
+            _leader = (ILeader) _registry.lookup("GloriousLeader");
+            response = _leader.GloriousLeaderFunction("Somedata");
+            System.out.println("Node: " + nodeID + " Called glorious leader: " + response);
+
+        } catch (Exception e)
+        {
+            System.err.println("Client exception: " + e.toString());
+            e.printStackTrace();
+        }
+
+        return response;
     }
 
     public int GetNodeNum()
