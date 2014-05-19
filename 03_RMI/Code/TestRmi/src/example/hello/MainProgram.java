@@ -9,12 +9,16 @@ public class MainProgram {
     public static void main(String args[]) {
         Node leader = new Node("Leader", 10, true);
         //leader.SetLeader();
-
+        Node slave0 = new Node("Slave0", 0, false);
         Node slave1 = new Node("Slave1", 1, false);
         Node slave2 = new Node("Slave2", 2, false);
         Node slave3 = new Node("Slave3", 3, false);
         Node slave4 = new Node("Slave4", 4, false);
         Node slave5 = new Node("Slave5", 5, false);
+        Node slave6 = new Node("Slave6", 6, false);
+        Node slave7 = new Node("Slave7", 7, false);
+        Node slave8 = new Node("Slave8", 8, false);
+        Node slave9 = new Node("Slave9", 9, false);
 
 
         slave1.CallGloriousLeader();
@@ -22,7 +26,7 @@ public class MainProgram {
         slave4.CallGloriousLeader();
 
 
-        leader = null;
+        //leader = null;
 
         slave5.SetLeader();
 
@@ -30,6 +34,13 @@ public class MainProgram {
         slave2.CallGloriousLeader();
         slave4.CallGloriousLeader();
 
+        //leader = new Node("Leader", 10, true);
+
+        slave5.StartQuesting();
+
+        slave4.CallGloriousLeader();
+        slave1.CallGloriousLeader();
+        slave2.CallGloriousLeader();
 
         while(true)
         {}

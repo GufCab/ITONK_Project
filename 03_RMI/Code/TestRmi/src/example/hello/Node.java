@@ -57,4 +57,8 @@ public class Node {
         return _client.GetNodeNum();
     }
 
+    public int StartQuesting() {
+        return _server.QuestFunction();
+    }
+
 }

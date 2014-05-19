@@ -19,12 +19,9 @@ public class Server implements Hello {
         _nodeNum = nodeNum;
 
         try {
-            //_helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
-            //_registry = LocateRegistry.getRegistry();
-            //_registry.bind(NODE_NAME, _helloStub);
-
-
-
+            _helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
+            _registry = LocateRegistry.getRegistry();
+            _registry.bind("QuestNode" + _nodeNum, _helloStub);
         } catch (Exception e)
         {
             System.err.println("Server exception: " + e.toString());
@@ -63,9 +60,17 @@ public class Server implements Hello {
 
     public int QuestFunction()
     {
+        System.out.println("Questing node: " + _nodeNum);
         int responseID = -1;
 
-        for(int i = _nodeNum; i < 10; i++)
+        /*
+        if(_nodeNum == 10)
+        {
+            SetLeader();
+            return _nodeNum;
+        }
+        */
+        for(int i = _nodeNum + 1; i <= 10; i++)
         {
             try {
                 Registry registry = LocateRegistry.getRegistry(null);
@@ -75,7 +80,7 @@ public class Server implements Hello {
                 responseID = serverStub.QuestFunction();
                 if(responseID > 0)
                 {
-                    return responseID;
+                    return _nodeNum;
                 }
 
             } catch(Exception e)
