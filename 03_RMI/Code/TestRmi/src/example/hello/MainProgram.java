@@ -1,7 +1,5 @@
 package example.hello;
 
-import java.io.Console;
-
 /**
  * Created by guf on 5/15/14.
  */
@@ -36,7 +34,8 @@ public class MainProgram {
 
         //leader = new Node("Leader", 10, true);
 
-        slave5.StartQuesting();
+        //slave5.StartQuesting();
+        //slave5.StartBullyElection();
 
         //leader = null;
         System.gc();

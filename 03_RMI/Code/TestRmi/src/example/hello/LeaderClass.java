@@ -35,6 +35,7 @@ public class LeaderClass implements ILeader{
             }
 
             _registry.bind("GloriousLeader", _leaderStub);
+            SendOrganizationMessages();
         } catch (Exception e) {
             System.err.println("Error in Leader..");
             e.printStackTrace();
@@ -48,12 +49,21 @@ public class LeaderClass implements ILeader{
         return "Leader on node: " + _nodeID + "With data: " + data;
     }
 
-
-
-    /*
-    public void SendOrganizationMessages()
+    private void SendOrganizationMessages()
     {
+        for(int i = 0; i <= 10; i++)
+        {
+            try {
+                Registry _registry = LocateRegistry.getRegistry(null);
+                Hello stub = (Hello)_registry.lookup("QuestNode" + i);
+                stub.OrganizationMessage(_nodeID);
 
+            } catch(Exception e)
+            {
+                System.out.println("Organization Exception");
+            }
+
+        }
     }
-    */
+
 }
