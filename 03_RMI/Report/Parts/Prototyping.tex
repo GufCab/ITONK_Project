@@ -76,6 +76,8 @@ The CallGloriousLeader() makes a lookup in the RMI registry, to find the leader 
 	\captionof{figure}{CallGloriousLeader in the Client class}
 \end{center}
 
+If the leader cannot be reached, the Client will tell the node to start an election. 
+
 \subsubsection{ILeader}
 The ILeader interface is the interface for the Leader and exposes the GloriousLeader function. This interface is used to create the RMI stub of the LeaderClass in the Client objects.
 
@@ -105,6 +107,7 @@ When the new leader is bound, it will send out organization messages with the ne
 %This might be removed and a system description moved i
 
 \section{Leader Election}
+In the prototype, the leader is in charge of exposing the GloriousLeader method to the other nodes in the system. In a real system, this function could be in charge of distributing workloads, accessing a database etc. In this prototype the leader's GloriousLeader function just returns the ID of the node it belongs to. 
 \subsection{Purpose}
 \subsection{GloriousLeader function}
 \subsection{Bully implementation}

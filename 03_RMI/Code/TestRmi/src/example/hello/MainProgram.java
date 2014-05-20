@@ -1,10 +1,21 @@
 package example.hello;
 
+import java.rmi.registry.LocateRegistry;
+
 /**
  * Created by guf on 5/15/14.
  */
 public class MainProgram {
     public static void main(String args[]) {
+
+        try {
+            System.setProperty("java.rmi.server.hostname", "192.168.204.130");
+            LocateRegistry.createRegistry(1099);
+        } catch (Exception e) {
+
+        }
+
+
         //Node leader = new Node("Leader", 10, true);
         //leader.SetLeader();
         Node slave0 = new Node("Slave0", 0, false);
