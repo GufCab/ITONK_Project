@@ -1,4 +1,4 @@
-\chapter{Prototyping in Office Message System}
+\chapter{Prototyping}
 %Introduction
 This prototype exemplifies the use of Java RMI Clients and Servers. As well as showing the basics of Remote Method Invocation, a basic leader-election algorithm is implemented. This leader-election takes place if it is discovered, that the current leader has gone down.
 
@@ -21,15 +21,19 @@ Therefore, the CLASSPATH variable must be set:
 
 This is the path to the base directory of the .class files, compiled with the Java Compiler (Through IntelliJ).
 
-When this is done, the RMI registry is started by the command:
+The RMI registry is created programatically from within the SystemInitializerMain class' main function, which is responsible for initializing the system. 
 
-\textit{rmiregistry \&}
+The RMI registry needs to know the network interface it will communicate on. This is done through setting the system property \textit{java.rmi.server.hostname} to the external IP of the host machine. 
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{SetPropertyMain.png}}
+	\captionof{figure}{Creating the RMI registry and setting the appropriate properties java.rmi.server.hostname}
+\end{center}
 
 \subsection{Running the Servers}
 When starting the main programs, java needs to know the path to the .class files of the project. The java.rmi.server also needs to know the path to the actual .class files.
 
-This is done through:
-[INSERT PICTURE OF STARTING MAIN PROGRAMS]
+This is done by specifying the java.rmi.server.codebase property. This is done using the java -D[Property]=[Value] parameter.
 
 \section{System description}
 The system consists of nodes in a ring-like configuration.
@@ -42,12 +46,23 @@ All nodes has a Server and a Client object. After a leader election, if a Node d
 
 The Node class exposes methods for interacting with the Server and Client objects.
 
+\begin{center}
+	\includegraphics[scale=1]{NodeBDD.png}
+	\captionof{figure}{Block Definition Diagram of the Node class}
+\end{center}
+
 \subsubsection{Hello Interface}
+This interface is implemented by the Server class. The interface exposes functions for leader elections as well as organization messages needed for setting the current leader etc.
+
+This is used for creating the stub, used by other servers for calling other serves when doing leader election.
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{HelloInterface.png}}
+	\captionof{figure}{Definition of the Hello interface}
+\end{center}
 
 \subsubsection{Server}
-The Server object takes care binding and serving up functions. The Server implements the Hello interface. 
-
-[INSERT BDD OF SERVER]
+The Server object takes care binding and serving up functions. The Server implements the Hello interface. See BDD of the Node class.
 
 When the Server comes online it registers itself to the RMI registry with id "QuestNodeXX" where XX is the ID of the node, that owns the Server. This is done in the servers constructor:
 
@@ -101,10 +116,6 @@ The LeaderClass will then rebind itself as the "GloriousLeader", so that the cur
 \end{center}
 
 When the new leader is bound, it will send out organization messages with the new leader ID, using the SendOrganizationMessages function.
-
-\subsection{System}
-%Description of the system with nodes in different processes etc.
-%This might be removed and a system description moved i
 
 \section{Leader Election}
 In the prototype, the leader is in charge of exposing the GloriousLeader method to the other nodes in the system. In a real system, this function could be in charge of distributing workloads, accessing a database etc. In this prototype the leader's GloriousLeader function just returns the ID of the node it belongs to. 
