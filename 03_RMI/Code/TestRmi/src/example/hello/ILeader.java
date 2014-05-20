@@ -8,5 +8,4 @@ import java.rmi.RemoteException;
  */
 public interface ILeader extends Remote{
     String GloriousLeaderFunction(String data) throws RemoteException;
-    //void SendOrganizationMessages();
 }
