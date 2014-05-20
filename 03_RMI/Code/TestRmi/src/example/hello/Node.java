@@ -24,6 +24,8 @@ public class Node {
         {
             _server.SetLeader();
         }
+
+        StartBullyElection();
     }
 
     public void BeginServer()
@@ -47,7 +49,8 @@ public class Node {
         String response = _client.CallGloriousLeader(_id);
         if (response.equals("NoResponse"))
         {
-            StartQuesting();
+            //StartQuesting();
+            StartBullyElection();
         }
     }
 
@@ -63,6 +66,9 @@ public class Node {
 
     public int StartQuesting() {
         return _server.QuestFunction();
+    }
+    public int StartBullyElection() {
+        return _server.BullyElection();
     }
 
 }

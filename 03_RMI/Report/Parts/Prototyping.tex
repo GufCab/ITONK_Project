@@ -38,19 +38,84 @@ Each node can be either a leader or a slave Node.
 \subsection{Node}
 The node is the main entity in the system. Each node has the capacity for being both leader and slave. 
 
-All nodes has a Server and a Client object. After a leader election, if a declares itself the leader, it will create a LeaderClass object for itself. 
+All nodes has a Server and a Client object. After a leader election, if a Node declares itself the leader, it will create a LeaderClass object for itself. 
+
+The Node class exposes methods for interacting with the Server and Client objects.
+
+\subsubsection{Hello Interface}
 
 \subsubsection{Server}
+The Server object takes care binding and serving up functions. The Server implements the Hello interface. 
+
+[INSERT BDD OF SERVER]
+
+When the Server comes online it registers itself to the RMI registry with id "QuestNodeXX" where XX is the ID of the node, that owns the Server. This is done in the servers constructor:
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{ServerConstructor.png}}
+	\captionof{figure}{Constructor for the Server class}
+\end{center}
+
+
+The main purpose of the Server is to expose:
+
+\begin{itemize}
+\item Questing Methods for leader elections
+\item OrganizationMessage(\textit{int leaderID})
+\end{itemize}
+
+If the node is Leader, the Server owns a LeaderClass object that exposes the GloriousLeader function. 
 
 \subsubsection{Client}
+The Client class is the entity in charge of calling the GloriousLeader function, after looking up the RMI registry.
+
+The CallGloriousLeader() makes a lookup in the RMI registry, to find the leader function. It calls the function and prints the response.
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{ClientCallGloriousLeader.png}}
+	\captionof{figure}{CallGloriousLeader in the Client class}
+\end{center}
+
+\subsubsection{ILeader}
+The ILeader interface is the interface for the Leader and exposes the GloriousLeader function. This interface is used to create the RMI stub of the LeaderClass in the Client objects.
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{ILeaderInterface.PNG}}
+	\captionof{figure}{The ILeader interface definition}
+\end{center}
+
+The GloriousLeader function throws the RemoteException if something goes wrong. This is strictly necessary to detect when something goes wrong in the transmission and a leader election is necessary.
 
 \subsubsection{LeaderClass}
+This is the implementation of the ILeader interface. This class is created when a Node is elected leader.
+
+Upon creation, the LeaderClass checks, if the "GloriousLeader" id is found in the RMI registry. If it is found it will be unbound by the Registry.UnBind(String) function. 
+
+The LeaderClass will then rebind itself as the "GloriousLeader", so that the current Node is now in charge of the GloriousLeader function.
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{LeaderClassConstructor.png}}
+	\captionof{figure}{The LeaderClass Constructor}
+\end{center}
+
+When the new leader is bound, it will send out organization messages with the new leader ID, using the SendOrganizationMessages function.
 
 \subsection{System}
+%Description of the system with nodes in different processes etc.
+%This might be removed and a system description moved i
+
 \section{Leader Election}
 \subsection{Purpose}
 \subsection{GloriousLeader function}
-\subsection{QuestFunction}
+\subsection{Bully implementation}
+\subsubsection{[QUESTING FUNCTION]}
+\subsection{Ring implementation}
+\subsubsection{[QUESTING FUNCTION]}
+\subsection{Optimized Bully}
+\subsubsection{QuestingFunction}
+
+
+
 
 \begin{center}
 	\includegraphics[width=\textwidth]{bdd_image.png}
