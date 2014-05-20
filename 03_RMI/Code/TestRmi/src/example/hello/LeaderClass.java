@@ -40,8 +40,6 @@ public class LeaderClass implements ILeader{
             System.err.println("Error in Leader..");
             e.printStackTrace();
         }
-
-
     }
 
     public String GloriousLeaderFunction(String data)
