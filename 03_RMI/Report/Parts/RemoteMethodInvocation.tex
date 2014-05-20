@@ -6,25 +6,29 @@ The Java RMI makes this possible.
 
 \section{Java RMI}
 \subsection{Java Virtual Machine}
+The Java Virtual Machine is a component that can execute Java bytecode. It is has an implementation on almost every platform and makes it possible to reuse your code on all these platforms. It JIT compiles the code to enable garbage collection and runtime code verification, so that programmer errors and safety isssues is avoided.
+Java bytecode and the JVM is analogous to Microsoft's .NET managed code and CLR (Common Language Runtime).
+
 \subsection{Remote Method Invocation}
 
 \subsection{Serialization}
+To be able to send data to another component / computer, Java RMI needs to serialize the data when it is send and then deserialize it when it is received. 
+Serialization means to convert some data into sequence of bytes that holds the original values and information on the source eg what kind of object it is. It should also be possible to convert it back into the original data at any time (deserialize). This concept is often used when data is saved into a file or database or when data is transferred over a network.
 
 \subsection{The RMI Registry}
 
 \section{Leader election}
 \subsection{Overview}
-In distributed systems, several different processes on several different machines can work together to solve a task or all be part of a major system.
-
-In a larger system, it might very well be, that there has to be a leader to distribute work. The leader could also be the focal point for all other nodes in the system, granting access to some resource, database etc. 
 
 \subsection{Leader Election}
-If all nodes of the system are truly autonomous, each node's lifetime/stability should be completely decoupled from any other node. This provides an issue, if there is a leader in the system that goes down. 
-The other nodes in the system must then, obscured from the user(s), \textit{elect} a new leader. The system should then resume, as if nothing had happened. 
-
-In other words, the election of a new leader should happen as soon as it is discovered the current leader is irresponsive or faulty. There are several different algorithms for electing a new leader. In this report, two of these methods are discussed; The Bully election and the Ring election.
 
 \subsection{Bully Election}
+The bully election algorithm basically elects the process with biggest process id as the new leader when the old leader is terminated. 
+If a process takes contact to the leader and doesn't get a response, it will then start a leader election by asking all processes with an id greater than its own, if they will be the leader. These processes will then reply if they are active that they will take over by continuing the algorithm. 
+
+If a process doesn't get an answer, then it is elected as the new leader and will state this to all other processes.
+
+This algorithm is very ineffective because you will quickly get a very high number of requests when all processes must ask all other processes with a higher id.
 
 \subsection{Ring Election}
 
