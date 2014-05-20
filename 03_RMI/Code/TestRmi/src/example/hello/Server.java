@@ -22,6 +22,7 @@ public class Server implements Hello {
             _helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
             _registry = LocateRegistry.getRegistry();
             _registry.bind("QuestNode" + _nodeNum, _helloStub);
+
         } catch (Exception e)
         {
             System.err.println("Server exception: " + e.toString());
@@ -54,6 +55,7 @@ public class Server implements Hello {
 
     public void OrganizationMessage(int newLeader)
     {
+        System.out.println("OrganizationMessage received. New leader: " + newLeader);
         _currentLeader = newLeader;
     }
 
