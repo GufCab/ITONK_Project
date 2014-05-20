@@ -14,4 +14,6 @@ public interface Hello extends Remote{
     int QuestFunction() throws RemoteException;
     void RingElectionFunction(int[] nodeIds) throws RemoteException;
     void RingElectionSetNewLeader(int leaderId) throws RemoteException;
+    int BullyElection() throws RemoteException;
+    void OrganizationMessage(int newLeader) throws RemoteException;
 }

@@ -1,13 +1,11 @@
 package example.hello;
 
-import java.io.Console;
-
 /**
  * Created by guf on 5/15/14.
  */
 public class MainProgram {
     public static void main(String args[]) {
-        Node leader = new Node("Leader", 10, true);
+        //Node leader = new Node("Leader", 10, true);
         //leader.SetLeader();
         Node slave0 = new Node("Slave0", 0, false);
         Node slave1 = new Node("Slave1", 1, false);
@@ -36,11 +34,17 @@ public class MainProgram {
 
         //leader = new Node("Leader", 10, true);
 
-        slave5.StartQuesting();
+        //slave5.StartQuesting();
+        //slave5.StartBullyElection();
+
+        //leader = null;
+        System.gc();
 
         slave4.CallGloriousLeader();
-        slave1.CallGloriousLeader();
-        slave2.CallGloriousLeader();
+        //slave1.CallGloriousLeader();
+        //slave2.CallGloriousLeader();
+
+
 
         while(true)
         {}
