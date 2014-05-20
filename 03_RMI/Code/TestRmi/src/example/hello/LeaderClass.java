@@ -45,7 +45,7 @@ public class LeaderClass implements ILeader{
 
     public String GloriousLeaderFunction(String data)
     {
-        return "Leader on node: " + _nodeID;
+        return "Leader on node: " + _nodeID + "With data: " + data;
     }
 
 
