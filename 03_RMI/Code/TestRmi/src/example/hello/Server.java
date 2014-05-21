@@ -2,6 +2,11 @@ package example.hello;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.List;
+=======
+>>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
 
 public class Server implements Hello {
     private String _id;
@@ -21,6 +26,10 @@ public class Server implements Hello {
         _id = id;
         _nodeNum = nodeNum;
         _isElection = false;
+
+        _nextNodeId = _nodeNum+1;
+        if(_nextNodeId > 9)
+            _nextNodeId=0;
 
         try {
             _helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
@@ -68,30 +77,51 @@ public class Server implements Hello {
     {
         _nextNodeId++;
 
-        if(_nextNodeId > 10)
+        if(_nextNodeId > 9)
             _nextNodeId=0;
     }
 
 
-    public void RingElectionFunction(int[] nodeIds)
+<<<<<<< HEAD
+    public void StartRingElection()
     {
+        System.out.println("Starting RingElection from node: " + _nodeNum);
+        System.out.println("Node " + _nextNodeId + " is broken");
+        incrementNextNode();
+        System.out.println("New next node is: " + _nextNodeId);
+
+        RingElectionFunction(new ArrayList<Integer>());
+    }
+
+
+    public void RingElectionFunction(ArrayList<Integer> nodeIds)
+    {
+=======
+    public void RingElectionFunction(int[] nodeIds) {
+>>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
         boolean ringComplete = false;
-
-
         int futureLeader = -1;
 
+<<<<<<< HEAD
+        if(nodeIds!=null) {
+            //Find out if ring is complete
+            for (Integer s : nodeIds) {
+                if (s == _nodeNum) {
+                    ringComplete = true;
+                    break;
+                }
+=======
         //Find out if ring is complete
-        for(int s:nodeIds)
-        {
-            if(s == _nodeNum)
-            {
+        for(int s:nodeIds) {
+            if(s == _nodeNum) {
                 ringComplete = true;
                 break;
+>>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
             }
         }
-
         if(ringComplete==true)
         {
+            System.out.println("Ring is complete in node " + _nodeNum);
             for(int node:nodeIds) {
                 if(node > futureLeader) {
                     futureLeader = node;
@@ -105,32 +135,42 @@ public class Server implements Hello {
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
                 RingElectionSetNewLeader(futureLeader);
+<<<<<<< HEAD
 
 
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
+=======
+            } catch (Exception e) { }
+>>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
 
         } else {
             //Ring is not complete
+            System.out.println("Ring is not complete");
             try {
                 Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
+                System.out.println("Getting next node from registry in node " + _nodeNum);
                 String registryEntry = "QuestNode" + _nextNodeId;
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
-                nodeIds[nodeIds.length+1] = _nodeNum;
+                nodeIds.add(_nodeNum);
 
+                System.out.println("Continuing election from node " + _nodeNum + " to node " + _nextNodeId);
                 serverStub.RingElectionFunction(nodeIds);
             } catch (Exception e) {
+                e.printStackTrace();
 
             }
         }
-
-
     }
 
     public void RingElectionSetNewLeader(int leaderId) {
+        System.out.println("Setting new leader to " + leaderId + "in node " + _nodeNum);
+
+        _currentLeader=leaderId;
+
         if(leaderId==_nodeNum) {
             this.SetLeader();
         }
@@ -146,11 +186,8 @@ public class Server implements Hello {
                 RingElectionSetNewLeader(leaderId);
             } catch (Exception e)
             {
-
+                e.printStackTrace();
             }
-        }
-
-
     }
 
     public int QuestFunction()
@@ -202,15 +239,14 @@ public class Server implements Hello {
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
                 responseID = serverStub.BullyElection();
             } catch(Exception e) {
-                System.err.println("QuestFunction on ID " + responseID + e.toString());
-                //e.printStackTrace();
+                System.err.println("QuestFunction on ID " + responseID + e.toString());                
             }
         }
 
         //I have the greatest id
         if(responseID == -1) {
             //declare winner
-            System.out.println("I'm leader" + _nodeNum);
+            System.out.println("I'm leader " + _nodeNum);
             SetLeader();
         }
 
