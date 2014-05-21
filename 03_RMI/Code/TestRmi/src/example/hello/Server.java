@@ -24,7 +24,7 @@ public class Server implements Hello {
 
         try {
             _helloStub = (Hello)UnicastRemoteObject.exportObject(this, 0);
-            _registry = LocateRegistry.getRegistry("192.168.204.130");
+            _registry = LocateRegistry.getRegistry(GlobalHost.HostName);
             _registry.bind("QuestNode" + _nodeNum, _helloStub);
 
         } catch (Exception e)
@@ -99,7 +99,7 @@ public class Server implements Hello {
             }
 
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + _nextNodeId;
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
@@ -114,7 +114,7 @@ public class Server implements Hello {
         } else {
             //Ring is not complete
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + _nextNodeId;
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
@@ -138,7 +138,7 @@ public class Server implements Hello {
         if(leaderId > _currentLeader) {
             //if the received leaderId is larger then the known one
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + _nextNodeId;
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
@@ -161,7 +161,7 @@ public class Server implements Hello {
         for(int i = _nodeNum + 1; i <= 10; i++)
         {
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + i;
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
@@ -196,7 +196,7 @@ public class Server implements Hello {
         for(int i = _nodeNum + 1; i <= 10; i++)
         {
             try {
-                Registry registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + i;
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
