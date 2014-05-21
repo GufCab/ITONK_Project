@@ -50,6 +50,8 @@ If a process doesn't get an answer, then it is elected as the new leader and wil
 
 This algorithm is very ineffective because you will quickly get a very high number of requests when all processes must ask all other processes with a higher id.
 
+\subsection{Optimized Bully Election}
+
 \subsection{Ring Election}
 Ring election is , as the name says, leader election based on a ring. Contrary to Bully election, each note only communicates with the next in line.
 

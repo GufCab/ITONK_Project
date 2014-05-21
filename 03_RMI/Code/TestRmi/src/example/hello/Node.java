@@ -50,8 +50,13 @@ public class Node {
         if (response.equals("NoResponse"))
         {
             //StartQuesting();
-            StartBullyElection();
+            //StartBullyElection();
+            StartRingElection();
         }
+    }
+
+    private void StartRingElection() {
+        _server.StartRingElection();
     }
 
     public void SetLeader()

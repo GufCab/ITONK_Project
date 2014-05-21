@@ -143,35 +143,14 @@ When a node discovers that the leader has terminated it will execute this functi
 \end{center}
 
 \subsection{Ring implementation}
-The ring election is implemented with three functions. It must be possible to trigger a new election when a node fails to respond. During this process each node mush be able to handle two kinds of messages. The first is the election process, where a node receives a message containing the ID's from all previously nodes in the ring. The node appends its own id to the message and passes it along the ring:
-
-\begin{center}
-	\fbox{\includegraphics[width=\textwidth]{RingElection_Function.PNG}}
-	\captionof{figure}{The RingElectionFunction implementation}
-\end{center}
-
-If the id is already in the message, the ring must be completed. If this is the case the node elects a new leader and starts the notification process about the new leader.
-
-This is done using the RingElectionSetNewLeader function. The node is notified about who is the new leader, saves this information and parses it on. When the message returns to the node that started the message, the ring is complete.
-
-\begin{center}
-	\fbox{\includegraphics[width=\textwidth]{RingElection_SetNewLeader.PNG}}
-	\captionof{figure}{The SetNewLeader implementation of ring election}
-\end{center}
-
-
-
 \subsubsection{[QUESTING FUNCTION]}
 \subsection{Optimized Bully}
+The optimized bully function
 \subsubsection{QuestingFunction}
 
 
 
 
-\begin{center}
-	\includegraphics[width=\textwidth]{bdd_image.png}
-	\captionof{figure}{BDD of the Office Message System}
-\end{center}
 \section{Tests}
 \subsection{Starting InitializerMain}
 The InitializerMain class creates the RMI registry with the correct properties. The main function in this class must be run before anything else. 
@@ -198,11 +177,37 @@ Note that the Node calls GloriousLeader when it comes online.
 \subsection{Bully Election Test}
 For this test, the InitializerMain has been started. Initially no nodes, and therefore no leader, is present. 
 
-The first Node started has id 1
+The first Node started has id 1.
+
 \begin{center}
 	\includegraphics[width=\textwidth]{StartingNode1Bully.png}
 	\captionof{figure}{Starting Node 1}
 \end{center}
 
+All election messages are \textbf{not} printed to the console, as this would be impossible to show all these messages in a report.
+
+It can be seen, that the node elects itself as leader (as it cannot get contact to any other nodes) and then calls the GloriousLeader function on itself. 
+
+The next Node started has id 8 and should therefore be elected leader.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode8Bully.png}
+	\captionof{figure}{Starting Node 1}
+\end{center}
+
+Node 8 is elected leader. 
+
+When adding a node with a lower id (here 6):
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode6Bully.png}
+	\captionof{figure}{Starting Node 1}
+\end{center}
+
+Node 8 is still elected leader, as it had a higher ID than 6.
+
+When a node attempts to call GloriousLeader function, when the leader process has been killed, this should trigger a leader election. 
+
+[INSERT IMAGE OF LEADER ELECTION BEING TRIGGERED BY ERROR]
 
 \subsection{Optimized Bully Test}

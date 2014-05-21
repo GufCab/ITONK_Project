@@ -1,7 +1,12 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract} 
+This report describes two methods of electing a leader in a distributed system, implemented through the Java Remote Method Invocation framework. The two methods are Ring Leader election and Bully election. An attempt to improve upon the Bully election algorithm, by reducing the amount of messages passed between nodes has been implemented and described. 
 
+A prototype consisting of different main functions and different Node functions has been implemented in Java and run on Linux Virtual machines, showing error handling and leader election in the distributed system.
 
+The prototypes described in this report all goes under a set of assumptions as provided by Christian Fischer along with the description of the task. 
+
+The working system and methods are shown by screenshots of the Console input/output. Critical parts of the source code, such as the actual implementations of the leader election algorithms are included where appropriate. 
 
 \setcounter{tocdepth}{1}
 \tableofcontents
