@@ -202,15 +202,14 @@ public class Server implements Hello {
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
                 responseID = serverStub.BullyElection();
             } catch(Exception e) {
-                System.err.println("QuestFunction on ID " + responseID + e.toString());
-                //e.printStackTrace();
+                System.err.println("QuestFunction on ID " + responseID + e.toString());                
             }
         }
 
         //I have the greatest id
         if(responseID == -1) {
             //declare winner
-            System.out.println("I'm leader" + _nodeNum);
+            System.out.println("I'm leader " + _nodeNum);
             SetLeader();
         }
 
