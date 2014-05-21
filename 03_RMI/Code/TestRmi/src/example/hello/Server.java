@@ -2,11 +2,10 @@ package example.hello;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
+
 
 public class Server implements Hello {
     private String _id;
@@ -82,7 +81,7 @@ public class Server implements Hello {
     }
 
 
-<<<<<<< HEAD
+
     public void StartRingElection()
     {
         System.out.println("Starting RingElection from node: " + _nodeNum);
@@ -96,13 +95,10 @@ public class Server implements Hello {
 
     public void RingElectionFunction(ArrayList<Integer> nodeIds)
     {
-=======
-    public void RingElectionFunction(int[] nodeIds) {
->>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
         boolean ringComplete = false;
         int futureLeader = -1;
 
-<<<<<<< HEAD
+
         if(nodeIds!=null) {
             //Find out if ring is complete
             for (Integer s : nodeIds) {
@@ -110,13 +106,7 @@ public class Server implements Hello {
                     ringComplete = true;
                     break;
                 }
-=======
-        //Find out if ring is complete
-        for(int s:nodeIds) {
-            if(s == _nodeNum) {
-                ringComplete = true;
-                break;
->>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
+
             }
         }
         if(ringComplete==true)
@@ -135,15 +125,11 @@ public class Server implements Hello {
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
                 RingElectionSetNewLeader(futureLeader);
-<<<<<<< HEAD
 
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-=======
-            } catch (Exception e) { }
->>>>>>> a11c79b89f46adedc95d71ae473862e055539a52
 
         } else {
             //Ring is not complete
@@ -184,10 +170,10 @@ public class Server implements Hello {
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
                 RingElectionSetNewLeader(leaderId);
-            } catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
     }
 
     public int QuestFunction()
