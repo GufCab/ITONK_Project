@@ -24,7 +24,7 @@ public class Client {
     public void GetHello(String nodeID)
     {
         try {
-            _registry = LocateRegistry.getRegistry(null);
+            _registry = LocateRegistry.getRegistry("192.168.204.130");
             _helloStub = (Hello) _registry.lookup("NodeHello");
 
             String response = _helloStub.sayHello();
@@ -41,7 +41,7 @@ public class Client {
         String response = "NoResponse";
 
         try {
-            _registry = LocateRegistry.getRegistry(null);
+            _registry = LocateRegistry.getRegistry("192.168.204.130");
             _leader = (ILeader) _registry.lookup("GloriousLeader");
             response = _leader.GloriousLeaderFunction("Somedata");
             System.out.println("Node: " + nodeID + " Called glorious leader: " + response);
@@ -52,7 +52,6 @@ public class Client {
             e.printStackTrace();
 
         }
-
         return response;
     }
 

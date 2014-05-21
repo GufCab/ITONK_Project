@@ -14,7 +14,8 @@ public class Client {
         String host = (args.length < 1) ? null : args[0];
 
         try {
-            Registry registry = LocateRegistry.getRegistry("rmi://192.168.147.135");
+            System.setProperty("java.rmi.server.hostname", "192.168.204.130");
+            Registry registry = LocateRegistry.getRegistry("192.168.204.130");
             Hello stub = (Hello) registry.lookup("Hello");
             String response = stub.sayHello();
             System.out.println("response: " + response);

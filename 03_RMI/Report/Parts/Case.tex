@@ -1,6 +1,8 @@
-\chapter{A Office communication ticker system}
+\chapter{A company wide distributed system}
 
-\section{Description}
+\section{Description and requirements}
+This is a description of a prototype we are going to build, that must be able execute code across a distributed system. More specifically, it should be possible to start any number of processes across any number of computers, that should be able to execute functions on any of the other processes. And it must furthermore implement a leader election algorithm to decide who the leader should be when a process is terminated. The leaders role is to take decisions when nodes are cooperating on a task or when nodes need to access non thread safe data like files or databases.
 
+One use case scenario would be that one computer has the customer database for the company, that has this system, but another computer needs some data about a customer. Or maybe an event occurred on one computer and another needs to react to that event. 
 
-\section{Requirements}
+By using Java RMI to solve this problem, makes this really simple and when it is set up it shouldn't much more complicated to use than local functions.
