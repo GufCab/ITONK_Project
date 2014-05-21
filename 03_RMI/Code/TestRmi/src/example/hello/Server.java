@@ -73,23 +73,17 @@ public class Server implements Hello {
     }
 
 
-    public void RingElectionFunction(int[] nodeIds)
-    {
+    public void RingElectionFunction(int[] nodeIds) {
         boolean ringComplete = false;
-
-
         int futureLeader = -1;
 
         //Find out if ring is complete
-        for(int s:nodeIds)
-        {
-            if(s == _nodeNum)
-            {
+        for(int s:nodeIds) {
+            if(s == _nodeNum) {
                 ringComplete = true;
                 break;
             }
         }
-
         if(ringComplete==true)
         {
             for(int node:nodeIds) {
@@ -105,11 +99,7 @@ public class Server implements Hello {
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
                 RingElectionSetNewLeader(futureLeader);
-
-
-            } catch (Exception e) {
-
-            }
+            } catch (Exception e) { }
 
         } else {
             //Ring is not complete
@@ -126,8 +116,6 @@ public class Server implements Hello {
 
             }
         }
-
-
     }
 
     public void RingElectionSetNewLeader(int leaderId) {
@@ -144,13 +132,8 @@ public class Server implements Hello {
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
 
                 RingElectionSetNewLeader(leaderId);
-            } catch (Exception e)
-            {
-
-            }
+            } catch (Exception e) { }
         }
-
-
     }
 
     public int QuestFunction()
