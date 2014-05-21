@@ -51,6 +51,8 @@ The Node class exposes methods for interacting with the Server and Client object
 	\captionof{figure}{Block Definition Diagram of the Node class}
 \end{center}
 
+When a Node comes online, it will trigger a leader election. This is done to make sure that even if new nodes come online, the one with the highest id will be the leader.
+
 \subsubsection{Hello Interface}
 This interface is implemented by the Server class. The interface exposes functions for leader elections as well as organization messages needed for setting the current leader etc.
 
@@ -144,3 +146,36 @@ The GloriousLeader function is very simply implemented:
 	\captionof{figure}{BDD of the Office Message System}
 \end{center}
 \section{Tests}
+\subsection{Starting InitializerMain}
+The InitializerMain class creates the RMI registry with the correct properties. The main function in this class must be run before anything else. 
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingSystemInitializerMain.png}
+	\captionof{figure}{Starting the SystemInitializerMain through Linux console}
+\end{center}
+
+In the definition of this project, it was to be assumed that each node knows the number of nodes that \textit{should} be present in the system (here assumed to be 11).
+
+\subsection{The Main function}
+The main function for starting nodes takes the node id as an argument. This way the node id can be passed to the node on startup of the process. Also this way, each node runs in its own process.
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{MainNodeStarter.png}}
+	\captionof{figure}{Implementation of the main function of the Main class}
+\end{center}
+
+Note that the Node calls GloriousLeader when it comes online. 
+
+\subsection{Ring Election Test}
+
+\subsection{Bully Election Test}
+For this test, the InitializerMain has been started. Initially no nodes, and therefore no leader, is present. 
+
+The first Node started has id 1
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode1Bully.png}
+	\captionof{figure}{Starting Node 1}
+\end{center}
+
+
+\subsection{Optimized Bully Test}
