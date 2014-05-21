@@ -130,7 +130,16 @@ The GloriousLeader function is very simply implemented:
 
 
 \subsection{Bully implementation}
-\subsubsection{[QUESTING FUNCTION]}
+The Bully Election implementation is actually quite straight forward. It is implemented as a single function as described below.
+
+\subsubsection{StartBullyElection function}
+When a node discovers that the leader has terminated it will execute this function. It basically just calls this function on all nodes with a higher ID number. If no one replies and "responseID" therefore is -1 then that node is elected as the new leader and runs the SetLeader() function to tell the others who the new leader is. 
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{StartBullyElection.PNG}}
+	\captionof{figure}{The StartBullyElection implementation}
+\end{center}
+
 \subsection{Ring implementation}
 \subsubsection{[QUESTING FUNCTION]}
 \subsection{Optimized Bully}
