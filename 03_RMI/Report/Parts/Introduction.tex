@@ -1,1 +1,9 @@
 \chapter{Introduction}
+In the workplace as well as in distributed systems, sometimes for everything to glide along smoothly, a leader is needed. 
+The leader can have the responsibility to distribute work, to access a single resource or something similar.                                                                                                                                                                                                                                                                                                                                                 
+
+In a distributed system consisting of several different nodes running in separate processes on separate machines, all dependent on a single leader, it is fatal error if the leader goes down. Therefore a mechanism needs to exist for the system to elect a new leader, without interference from an outside user. 
+
+Several different approaches for electing a leader exist. This report will focus in two; the Bully Algorithm and the Ring Algorithm. 
+
+To explore these leader election algorithms, the Java Remote Method Invocation framework (Java RMI) is used for implementing nodes to run in separate processes on separate Linux machines. 

@@ -118,9 +118,17 @@ The LeaderClass will then rebind itself as the "GloriousLeader", so that the cur
 When the new leader is bound, it will send out organization messages with the new leader ID, using the SendOrganizationMessages function.
 
 \section{Leader Election}
-In the prototype, the leader is in charge of exposing the GloriousLeader method to the other nodes in the system. In a real system, this function could be in charge of distributing workloads, accessing a database etc. In this prototype the leader's GloriousLeader function just returns the ID of the node it belongs to. 
-\subsection{Purpose}
+In the prototype, the leader is in charge of exposing the GloriousLeader method to the other nodes in the system. In a real system, this function could be in charge of distributing workloads, accessing a database etc. In this prototype the leader's GloriousLeader function just returns the ID of the node it belongs to along with a small message. 
+
 \subsection{GloriousLeader function}
+The GloriousLeader function is very simply implemented:
+
+\begin{center}
+	\fbox{\includegraphics[scale=1]{GloriousLeaderFunction.png}}
+	\captionof{figure}{The GloriousLeaderFunction implementation}
+\end{center}
+
+
 \subsection{Bully implementation}
 \subsubsection{[QUESTING FUNCTION]}
 \subsection{Ring implementation}
