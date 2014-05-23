@@ -13,8 +13,7 @@ public class LeaderClass implements ILeader{
     private ILeader _leaderStub;
 
 
-    public LeaderClass(int nodeID)
-    {
+    public LeaderClass(int nodeID) {
         _nodeID = nodeID;
         boolean isGloriousLeaderBound = false;
 
@@ -42,8 +41,7 @@ public class LeaderClass implements ILeader{
         }
     }
 
-    public String GloriousLeaderFunction(String data)
-    {
+    public String GloriousLeaderFunction(String data) {
         return "Leader on node: " + _nodeID + "With data: " + data;
     }
 

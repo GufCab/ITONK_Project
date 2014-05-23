@@ -160,13 +160,15 @@ This is done using the RingElectionSetNewLeader function. The node is notified a
 \end{center}
 
 \subsection{Optimized Bully}
-The optimized bully function reduces the amount of messages passed between Nodes, during a leader election compared to the bully function.
-
-Using this method, the servers will call each others "QuestFunction".
+Our implementation of the optimized bully includes a single function that calls nodes with higher IDs until no nodes return and it will then call the SetLeader() function that elects it as the new leader.
 
 \subsubsection{QuestFunction}
-
-
+This is the rather simple implementaiton:
+[INSERT CORRECT PICTURE]
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{RingElection_SetNewLeader.PNG}}
+	\captionof{figure}{The QuestFunction implementation of optimized bully election}
+\end{center}
 
 
 \section{Tests}
