@@ -145,8 +145,11 @@ When a node discovers that the leader has terminated it will execute this functi
 \subsection{Ring implementation}
 \subsubsection{[QUESTING FUNCTION]}
 \subsection{Optimized Bully}
-The optimized bully function
-\subsubsection{QuestingFunction}
+The optimized bully function reduces the amount of messages passed between Nodes, during a leader election compared to the bully function.
+
+Using this method, the servers will call each others "QuestFunction".
+
+\subsubsection{QuestFunction}
 
 
 
