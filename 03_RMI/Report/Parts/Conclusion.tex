@@ -1,5 +1,14 @@
 {Conclusion}
 \section{Discussion and Results}
+We ended up with two different prototypes. One that is able to register nodes on different computers on the same network and another that is a little more complicated but only works on one computer.
+
+In the second one is it possible to create nodes with IDs that is used in one of three different implementations of leader algorithms and it is possible to execute functions on the other nodes.
+
+The Bully Election algorithm implementation works as intented but is very quickly becoming inefficient when many nodes is registered.
+
+The Ring Election algorithm is also working as intented but is much more efficient as many fewer calls is required, but the implementation is a little more complicated.
+
+Last but not least is our own implementation of an Election algorithm. It is trying to optimize on the Bully algorithm by only calling one node with higher id and not just calling all nodes with a higher id. That one node is then calling one node with higher id and so forth until no none is answering.
 
 \section{Conclusion}
 
