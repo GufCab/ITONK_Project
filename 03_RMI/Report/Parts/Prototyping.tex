@@ -145,15 +145,12 @@ When a node discovers that the leader has terminated it will execute this functi
 \subsection{Ring implementation}
 \subsubsection{[QUESTING FUNCTION]}
 \subsection{Optimized Bully}
+The optimized bully function
 \subsubsection{QuestingFunction}
 
 
 
 
-\begin{center}
-	\includegraphics[width=\textwidth]{bdd_image.png}
-	\captionof{figure}{BDD of the Office Message System}
-\end{center}
 \section{Tests}
 \subsection{Starting InitializerMain}
 The InitializerMain class creates the RMI registry with the correct properties. The main function in this class must be run before anything else. 
@@ -180,11 +177,37 @@ Note that the Node calls GloriousLeader when it comes online.
 \subsection{Bully Election Test}
 For this test, the InitializerMain has been started. Initially no nodes, and therefore no leader, is present. 
 
-The first Node started has id 1
+The first Node started has id 1.
+
 \begin{center}
 	\includegraphics[width=\textwidth]{StartingNode1Bully.png}
 	\captionof{figure}{Starting Node 1}
 \end{center}
 
+All election messages are \textbf{not} printed to the console, as this would be impossible to show all these messages in a report.
+
+It can be seen, that the node elects itself as leader (as it cannot get contact to any other nodes) and then calls the GloriousLeader function on itself. 
+
+The next Node started has id 8 and should therefore be elected leader.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode8Bully.png}
+	\captionof{figure}{Starting Node 1}
+\end{center}
+
+Node 8 is elected leader. 
+
+When adding a node with a lower id (here 6):
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode6Bully.png}
+	\captionof{figure}{Starting Node 1}
+\end{center}
+
+Node 8 is still elected leader, as it had a higher ID than 6.
+
+When a node attempts to call GloriousLeader function, when the leader process has been killed, this should trigger a leader election. 
+
+[INSERT IMAGE OF LEADER ELECTION BEING TRIGGERED BY ERROR]
 
 \subsection{Optimized Bully Test}

@@ -20,7 +20,7 @@ public class LeaderClass implements ILeader{
 
         try {
             _leaderStub = (ILeader) UnicastRemoteObject.exportObject(this, 0);
-            _registry = LocateRegistry.getRegistry("192.168.204.130");
+            _registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
             String[] boundNames = _registry.list();
 
@@ -52,7 +52,7 @@ public class LeaderClass implements ILeader{
         for(int i = 0; i <= 10; i++)
         {
             try {
-                Registry _registry = LocateRegistry.getRegistry("192.168.204.130");
+                Registry _registry = LocateRegistry.getRegistry(GlobalHost.HostName);
                 Hello stub = (Hello)_registry.lookup("QuestNode" + i);
                 stub.OrganizationMessage(_nodeID);
 

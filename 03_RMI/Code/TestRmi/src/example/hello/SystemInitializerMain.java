@@ -8,8 +8,9 @@ import java.rmi.registry.LocateRegistry;
 public class SystemInitializerMain {
     public static void main(String args[]) {
         try {
-            System.setProperty("java.rmi.server.hostname", "192.168.204.130");
-            LocateRegistry.createRegistry(1099);
+            System.setProperty("java.rmi.server.hostname", GlobalHost.HostName);
+            LocateRegistry.createRegistry(GlobalHost.Port);
+            System.out.println("RMI Registry created.");
         } catch (Exception e) {
             e.printStackTrace();
         }

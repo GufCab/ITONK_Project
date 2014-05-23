@@ -11,5 +11,11 @@ The Ring Election algorithm is also working as intented but is much more efficie
 Last but not least is our own implementation of an Election algorithm. It is trying to optimize on the Bully algorithm by only calling one node with higher id and not just calling all nodes with a higher id. That one node is then calling one node with higher id and so forth until no none is answering.
 
 \section{Conclusion}
+Java Remote Procedure Calls is a powerful tool. We have created a system that is completely object orientated and operates solely over a network interface, using Java RMI. The system is design around a leader synchronization which allows for serialized access to databases and similar utilities by objects. We have created a very robust design by introducing different leader election algorithms, which works across the network by using the Java Remote Procedure Calls.
+This design also introduces some limitations. For example the system will only work in a Java context, and also introduces a huge overhead through RMI and the necessary continuous leaderelection.
+
 
 \section{Perspectives}
+Working prototypes for the different leader election implementations has been created at a very basic level. In perspective, a more dynamic approach to the number of Nodes should be used. In a real system, it would be very important to have it be possible for a dynamic number of nodes to be in the system. 
+
+Using this approach would additionally reduce the amount of unnecessary/lost messages between Nodes during leader election. 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String args[]) {
-        System.setProperty("java.rmi.server.hostname", "192.168.204.130");
+        System.setProperty("java.rmi.server.hostname", GlobalHost.HostName);
         ArrayList<Node> nodes = new ArrayList<Node>();
 
         for(String arg: args) {
