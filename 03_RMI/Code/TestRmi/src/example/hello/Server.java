@@ -160,37 +160,27 @@ public class Server implements Hello {
         }
     }
 
-    public int QuestFunction()
-    {
+    public int QuestFunction() {
         System.out.println("Questing node: " + _nodeNum);
         int responseID = -1;
 
-        for(int i = _nodeNum + 1; i <= 10; i++)
-        {
+        for(int i = _nodeNum + 1; i <= 10; i++) {
             try {
                 Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
                 String registryEntry = "QuestNode" + i;
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
                 responseID = serverStub.QuestFunction();
-                if(responseID > 0)
-                {
+                if(responseID > 0) {
                     return _nodeNum;
                 }
-
             } catch(Exception e)
             {
                 System.err.println("QuestFunction on ID " + responseID + e.toString());
                 //e.printStackTrace();
             }
         }
-
-        //We have not returned, THIS must be the highest ID
         _currentLeader = _nodeNum;
-
-        //Create a LeaderModule or this object
-        //_leaderModule = new LeaderClass(_nodeNum);
-        //_leaderModule.SendOrganizationMessages();
         SetLeader();
 
         return _nodeNum;
