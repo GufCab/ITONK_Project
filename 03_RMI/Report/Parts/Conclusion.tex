@@ -4,11 +4,12 @@ We ended up with two different prototypes. One that is able to register nodes on
 
 In the second one is it possible to create nodes with IDs that is used in one of three different implementations of leader algorithms and it is possible to execute functions on the other nodes.
 
-The Bully Election algorithm implementation works as intented but is very quickly becoming inefficient when many nodes is registered.
+The Bully Election algorithm implementation works as intended but is very quickly becoming inefficient when many nodes is registered.
 
-The Ring Election algorithm is also working as intented but is much more efficient as many fewer calls is required, but the implementation is a little more complicated.
+The Ring Election algorithm is also working as intended but is much more efficient as many fewer calls is required, but the implementation is a little more complicated.
 
-Last but not least is our own implementation of an Election algorithm. It is trying to optimize on the Bully algorithm by only calling one node with higher id and not just calling all nodes with a higher id. That one node is then calling one node with higher id and so forth until no none is answering.
+Last but not least is our own implementation of an Election algorithm. It is trying to optimize on the Bully algorithm by only calling one node with higher id and not just calling all nodes with a higher id. That one node is then calling another node with higher id and so forth until no none is answering and a new leader is elected.
+This method is way more efficient than the other two algorithms but is also potentially slower in some cases e.g if the first higher node doesn't give an answer.
 
 \section{Conclusion}
 Java Remote Procedure Calls is a powerful tool. We have created a system that is completely object orientated and operates solely over a network interface, using Java RMI. The system is design around a leader synchronization which allows for serialized access to databases and similar utilities by objects. We have created a very robust design by introducing different leader election algorithms, which works across the network by using the Java Remote Procedure Calls.
