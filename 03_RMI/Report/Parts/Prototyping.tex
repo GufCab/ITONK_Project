@@ -193,6 +193,27 @@ The main function for starting nodes takes the node id as an argument. This way 
 Note that the Node calls GloriousLeader when it comes online. 
 
 \subsection{Ring Election Test}
+First we will start Node processes with the BackgroundMain function. Node 2 and 4 are started this way. In the following figure Node 2 is already running. Notice how node 4 will start an election and in the end become the leader. The image is truncated and mainly shows the last part, where the leader is elected (4).
+
+\begin{center}
+	\includegraphics[width=\textwidth]{StartingNode4Ring.png}
+	\captionof{figure}{The end of the Leader Election process after Node 4 comes online. Many messages are send here, as the ring is very broken (only node 2 and 4 are alive)}
+\end{center}
+
+Then we start a new node with the ID 3. This Node will trigger a leader election, but the leader will still be 4.
+Note that the GloriousLeader function will not be called until "call" is entered into the console program. 
+
+\begin{center}
+	\includegraphics[width=\textwidth]{CallingGloriousLeaderFrom3.png}
+	\captionof{figure}{Calling the GloriousLeader function from Node 3. 4 is still leader.}
+\end{center}
+
+Then we create a new node with the id 8. We kill the process of this node and then let Node 3 call the GloriousLeader function. This should fail, as the leader is down. Note that in the following figure, Node 8 has been created and the process has been killed.
+
+\begin{center}
+	\includegraphics[width=\textwidth]{CallGloriousLeaderOnDeadLeaderRing.png}
+	\captionof{figure}{Calling a dead leader triggers a leader election.}
+\end{center}
 
 \subsection{Bully Election Test}
 For this test, the InitializerMain has been started. Initially no nodes, and therefore no leader, is present. 
@@ -228,6 +249,11 @@ Node 8 is still elected leader, as it had a higher ID than 6.
 
 When a node attempts to call GloriousLeader function, when the leader process has been killed, this should trigger a leader election. 
 
-[INSERT IMAGE OF LEADER ELECTION BEING TRIGGERED BY ERROR]
+This is tested by setting up the system with a few nodes with 8 being the leader. The leader process is killed with the \textbf{kill -9 [Process ID]} and after this, the GloriousLeader function will be called. This triggers a leader election.
 
-\subsection{Optimized Bully Test}
+The following figure shows what happens when the Leader function is called on a dead leader. The image is truncated to not show the stack-trace printout of the exception. It can be seen, however, that a new election is triggered:
+
+\begin{center}
+	\includegraphics[width=\textwidth]{BullyFailureTriggeredElection.png}
+	\captionof{figure}{Failure triggered election with bully election}
+\end{center}
