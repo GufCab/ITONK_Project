@@ -24,8 +24,8 @@ public class Node {
         {
             _server.SetLeader();
         }
-
-        StartBullyElection();
+        StartRingElection();
+        //StartBullyElection();
     }
 
     public void BeginServer()

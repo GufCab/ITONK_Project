@@ -76,7 +76,7 @@ public class Server implements Hello {
     {
         _nextNodeId++;
 
-        if(_nextNodeId > 9)
+        if(_nextNodeId > 10)
             _nextNodeId=0;
     }
 
@@ -128,7 +128,8 @@ public class Server implements Hello {
 
 
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Error in RingElectionFunction() " + _nodeNum);
             }
 
         } else {
@@ -146,6 +147,7 @@ public class Server implements Hello {
                 System.out.println("Continuing election from node " + _nodeNum + " to node " + _nextNodeId);
                 serverStub.RingElectionFunction(nodeIds);
             } catch (Exception e) {
+                StartRingElection();
                 e.printStackTrace();
 
             }
@@ -153,25 +155,31 @@ public class Server implements Hello {
     }
 
     public void RingElectionSetNewLeader(int leaderId) {
-        System.out.println("Setting new leader to " + leaderId + "in node " + _nodeNum);
+        System.out.println("Setting new leader to " + leaderId + " in node " + _nodeNum);
 
         _currentLeader=leaderId;
 
         if(leaderId==_nodeNum) {
+            System.out.println("LeaderID == nodeNum" + leaderId + " = " + _nodeNum);
             this.SetLeader();
+
         }
 
         if(leaderId > _currentLeader) {
             //if the received leaderId is larger then the known one
+
             try {
                 Registry registry = LocateRegistry.getRegistry(GlobalHost.HostName);
 
-                String registryEntry = "QuestNode" + _nextNodeId;
+                String registryEntry = "QuestNode" + leaderId;//_nextNodeId;
+                System.out.println("Trying RegistryEntry: " + registryEntry);
                 Hello serverStub = (Hello) registry.lookup(registryEntry);
+                System.out.println("Calling setleader on leader id: " + leaderId);
 
-                RingElectionSetNewLeader(leaderId);
+                serverStub.RingElectionSetNewLeader(leaderId);
             } catch (Exception e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+                System.out.println("Error with: " + leaderId + "In node: " + _nodeNum);
             }
         }
     }
