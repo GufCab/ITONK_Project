@@ -143,12 +143,32 @@ When a node discovers that the leader has terminated it will execute this functi
 \end{center}
 
 \subsection{Ring implementation}
-\subsubsection{[QUESTING FUNCTION]}
+The ring election is implemented with three functions. It must be possible to trigger a new election when a node fails to respond. During this process each node mush be able to handle two kinds of messages. The first is the election process, where a node receives a message containing the ID's from all previously nodes in the ring. The node appends its own id to the message and passes it along the ring:
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{RingElection_Function.PNG}}
+	\captionof{figure}{The RingElectionFunction implementation}
+\end{center}
+
+If the id is already in the message, the ring must be completed. If this is the case the node elects a new leader and starts the notification process about the new leader.
+
+This is done using the RingElectionSetNewLeader function. The node is notified about who is the new leader, saves this information and parses it on. When the message returns to the node that started the message, the ring is complete.
+
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{RingElection_SetNewLeader.PNG}}
+	\captionof{figure}{The SetNewLeader implementation of ring election}
+\end{center}
+
 \subsection{Optimized Bully}
-The optimized bully function
-\subsubsection{QuestingFunction}
+Our implementation of the optimized bully includes a single function that calls nodes with higher IDs until no nodes return and it will then call the SetLeader() function that elects it as the new leader.
 
-
+\subsubsection{QuestFunction}
+This is the rather simple implementaiton:
+[INSERT CORRECT PICTURE]
+\begin{center}
+	\fbox{\includegraphics[width=\textwidth]{RingElection_SetNewLeader.PNG}}
+	\captionof{figure}{The QuestFunction implementation of optimized bully election}
+\end{center}
 
 
 \section{Tests}
