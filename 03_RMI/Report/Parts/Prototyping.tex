@@ -47,7 +47,7 @@ All nodes has a Server and a Client object. After a leader election, if a Node d
 The Node class exposes methods for interacting with the Server and Client objects.
 
 \begin{center}
-	\includegraphics[scale=1]{NodeBDD.png}
+	\includegraphics[width=\textwidth]{NodeBDD.png}
 	\captionof{figure}{Block Definition Diagram of the Node class}
 \end{center}
 
@@ -196,7 +196,7 @@ Note that the Node calls GloriousLeader when it comes online.
 First we will start Node processes with the BackgroundMain function. Node 2 and 4 are started this way. In the following figure Node 2 is already running. Notice how node 4 will start an election and in the end become the leader. The image is truncated and mainly shows the last part, where the leader is elected (4).
 
 \begin{center}
-	\includegraphics[width=\textwidth]{StartingNode4Ring.png}
+	\includegraphics[scale=1]{StartingNode4Ring.png}
 	\captionof{figure}{The end of the Leader Election process after Node 4 comes online. Many messages are send here, as the ring is very broken (only node 2 and 4 are alive)}
 \end{center}
 
