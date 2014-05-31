@@ -2,9 +2,7 @@ package example.hello;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Server implements Hello {
@@ -133,7 +131,7 @@ public class Server implements Hello {
                 serverStub.RingElectionFunction(nodeIds);
             } catch (Exception e) {
                 StartRingElection();
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
     }
@@ -206,7 +204,7 @@ public class Server implements Hello {
                 Hello serverStub = (Hello)registry.lookup(registryEntry);
                 responseID = serverStub.BullyElection();
             } catch(Exception e) {
-                System.err.println("QuestFunction on ID " + responseID + e.toString());                
+                //System.err.println("QuestFunction on ID " + responseID + e.toString());
             }
         }
         //I have the greatest id

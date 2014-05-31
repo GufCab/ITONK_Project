@@ -28,7 +28,7 @@ public class LeaderClass implements ILeader{
                 System.out.println("BoundName: " + name);
                 if(name.equals("GloriousLeader"))
                 {
-                    System.out.println("BoundName: " + name);
+                    //System.out.println("BoundName: " + name);
                     _registry.unbind("GloriousLeader");
                 }
             }
@@ -37,12 +37,12 @@ public class LeaderClass implements ILeader{
             SendOrganizationMessages();
         } catch (Exception e) {
             System.err.println("Error in Leader..");
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
     public String GloriousLeaderFunction(String data) {
-        return "Leader on node: " + _nodeID + "With data: " + data;
+        return "Leader on node: " + _nodeID + " With data: " + data;
     }
 
     private void SendOrganizationMessages()
@@ -56,7 +56,7 @@ public class LeaderClass implements ILeader{
 
             } catch(Exception e)
             {
-                System.out.println("Organization Exception");
+                //System.out.println("Organization Exception");
             }
 
         }

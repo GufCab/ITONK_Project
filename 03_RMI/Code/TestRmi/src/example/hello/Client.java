@@ -17,7 +17,7 @@ public class Client {
         } catch (Exception e)
         {
             System.err.println("Client exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -32,7 +32,7 @@ public class Client {
         } catch (Exception e)
         {
             System.err.println("Client exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
@@ -49,7 +49,7 @@ public class Client {
         } catch (Exception e)
         {
             System.err.println("Client exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
 
         }
         return response;
@@ -64,7 +64,7 @@ public class Client {
         } catch (Exception e)
         {
             System.err.println("Client exception: " + e.toString());
-            e.printStackTrace();
+            //e.printStackTrace();
             return -1;
         }
     }

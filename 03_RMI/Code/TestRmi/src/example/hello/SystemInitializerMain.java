@@ -12,7 +12,7 @@ public class SystemInitializerMain {
             LocateRegistry.createRegistry(GlobalHost.Port);
             System.out.println("RMI Registry created.");
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         while(true) {}

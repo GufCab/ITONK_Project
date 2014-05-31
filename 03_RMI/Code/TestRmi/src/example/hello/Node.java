@@ -24,8 +24,8 @@ public class Node {
         {
             _server.SetLeader();
         }
-        StartRingElection();
-        //StartBullyElection();
+        //StartRingElection();
+        StartBullyElection();
     }
 
     public void BeginServer()
@@ -50,8 +50,8 @@ public class Node {
         if (response.equals("NoResponse"))
         {
             //StartQuesting();
-            //StartBullyElection();
-            StartRingElection();
+            StartBullyElection();
+            //StartRingElection();
         }
     }
 
